@@ -1,0 +1,18 @@
+.expensify-header {
+  background: $dark-blue;
+}
+
+.expensify-header__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $size-s 0;
+}
+
+.expensify-header__title {
+  color: $solid-white;
+  text-decoration: none;
+  h1 {
+    margin: 0;
+  }
+}

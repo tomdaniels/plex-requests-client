@@ -1,0 +1,22 @@
+.login-page__box-layout {
+  background: url('/images/bg.jpg');
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.login-page__box {
+  background: fade_out($solid-white, .15);
+  border-radius: 3px;
+  text-align: center;
+  width: 25rem;
+  padding: $size-lar $size-med;
+}
+
+.login-page__title {
+  margin: 0 0 $size-med 0;
+  line-height: 1;
+}
