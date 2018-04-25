@@ -1,9 +1,10 @@
 import React from 'react';
+import Header from './header'
 
-const Dashboard = () => (
-    <div className="content-container">
-        Replace me with an app!
+const Landing = () => (
+    <div>
+        <Header title="Plex Requests" />
     </div>
 );
 
-export default Dashboard;
+export default Landing;

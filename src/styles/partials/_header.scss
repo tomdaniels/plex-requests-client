@@ -1,18 +1,28 @@
-.expensify-header {
-  background: $dark-blue;
-}
-
-.expensify-header__content {
+.plex-requests__header-wrap {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: $size-s 0;
-}
-
-.expensify-header__title {
+  font-size: 25px;
   color: $solid-white;
-  text-decoration: none;
-  h1 {
-    margin: 0;
-  }
+  background-color: $solid-black;
+};
+
+.plex-requests__header-img {
+  height: 36px;
+  width: auto;
+  margin: 25px 0;
+};
+
+.plex-requests__header-left {
+  display: flex;
+  margin-left: 10px;
+};
+
+.plex-requests__header-right {
+  display: flex;
+  margin-right: 10px;
+  color: $solid-grey;
+};
+
+.plex-requests__header-item {
+  padding: 0 5px;
 }

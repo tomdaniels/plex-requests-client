@@ -1,26 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux';
-import { startLogout } from '../actions/auth';
+import PropTypes from 'prop-types';
 
-export const Header = ({ startLogout }) => (
-    <header className="expensify-header">
-        <div className="content-container">
-            <div className="expensify-header__content">
-                <Link
-                    className="expensify-header__title"
-                    to="/dashboard"
-                >
-                    <h1>Boilerplate</h1>
-                </Link>
-                <button className="button button--link" onClick={startLogout}>Logout</button>
-            </div>
+export const Header = ({title}) => (
+    <header>
+      <div className="plex-requests__header-wrap">
+        <div className="plex-requests__header-left">
+          <img
+              className="plex-requests__header-img"
+              src="/images/play-symbol.png"
+              alt="Plex Requests for tomd.io" />
+          <p className="plex-requests__header-item">{title}</p>
         </div>
+        <div className="plex-requests__header-right">
+          <p className="plex-requests__header-item">Search</p>
+          <p className="plex-requests__header-item">My Requests</p>
+        </div>
+      </div>
     </header>
 );
 
-const mapDispatchToProps = (dispatch) => ({
-    startLogout: () => dispatch(startLogout())
-});
+Header.propTypes = {
+  title: PropTypes.string.isRequired,
+};
 
-export default connect(undefined, mapDispatchToProps)(Header);
+export default Header;
