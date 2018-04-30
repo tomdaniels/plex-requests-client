@@ -13,14 +13,9 @@
 };
 
 .plex-requests__header-left {
+  width: 60%;
   display: flex;
-  margin-left: 10px;
-};
-
-.plex-requests__header-right {
-  display: flex;
-  margin-right: 10px;
-  color: $solid-grey;
+  margin: 0 auto;
 };
 
 .plex-requests__header-item {

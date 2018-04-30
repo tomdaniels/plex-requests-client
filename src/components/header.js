@@ -11,10 +11,6 @@ export const Header = ({title}) => (
               alt="Plex Requests for tomd.io" />
           <p className="plex-requests__header-item">{title}</p>
         </div>
-        <div className="plex-requests__header-right">
-          <p className="plex-requests__header-item">Search</p>
-          <p className="plex-requests__header-item">My Requests</p>
-        </div>
       </div>
     </header>
 );
