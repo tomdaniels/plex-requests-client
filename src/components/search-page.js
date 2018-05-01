@@ -6,52 +6,59 @@ import 'react-select/dist/react-select.css';
 
 class SearchPage extends React.Component {
   state = {
-    options: [
-      { label: 'apple pie', value: 'apple pie' },
-      { label: 'banana', value: 'banana' },
-      { label: 'pear', value: 'pear' }
-    ],
-    items: [],
-    value: '',
+    searchTerm: '',
     movies: [],
   };
 
-  handleChange = (e) => {
-    const value = e.value;
-    this.setState(() => ({
-      value,
-    }));
-  };
+  getMoviesDynamically(input) {
+    const encodedInput = input.includes(' ') ? input.replace(' ', '+') : input;
+    const endpoint = `https://api.themoviedb.org/3/search/movie?api_key=${this.props.apiKey}&query=${encodedInput}`;
 
-  getMoviesByInput(input, key) {
-    const encodedInput = input.replace(' ', '+');
-    const endpoint = `https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${encodedInput}`;
     axios.get(endpoint).then((res) => {
+      if (res.status === 200) {
       const results = res.data.results;
-      const movie = results.map((result) => ({
+      const movies = results.map((result) => ({
         id: result.id,
         title: result.title,
+        desc: result.overview,
         date: result.release_date,
-        descriptions: result.overview,
         image: result.poster_path,
       }));
-      console.log(movie.map((mov) => mov));
-    }).catch((error) => console.log(error));
-  }
+      this.setState(() => ({
+        movies,
+      }));
+    } else {
+      return 'something went wrong, searching for that movie';
+    }
+    }).catch((err) => console.log(err));
+  };
+
+  handleChange = (e) => {
+    e.preventDefault();
+    const input = e.target.value;
+
+    this.setState(() => ({
+      searchTerm: input,
+    }));
+
+    this.getMoviesDynamically(input);
+  };
+
+  onSubmit(event) {
+    event.preventDefault();
+    console.log('render movies in list below');
+  };
 
   render() {
-    this.getMoviesByInput(this.state.value, this.props.apiKey);
     return (
       <div>
         <h1>Search</h1>
-        <Select
-          options={this.state.options}
-          inputValue={this.state.value}
-          onChange={this.handleChange}
-          value={this.state.value}
-          allowCreate
-          clearable
-        />
+        <form onSubmit={this.onSubmit}>
+          <input
+            type="text"
+            onInput={this.handleChange}
+          />
+        </form>
       </div>
     )
   }
