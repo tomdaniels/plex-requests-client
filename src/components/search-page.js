@@ -5,7 +5,6 @@ import MovieList from './movie-list';
 
 class SearchPage extends React.Component {
   state = {
-    searchTerm: '',
     movies: [],
     showList: false,
   };
@@ -35,24 +34,14 @@ class SearchPage extends React.Component {
     e.preventDefault();
     const input = e.target.value;
 
-    this.setState(() => ({
-      searchTerm: input,
-    }));
-
     this.getMoviesDynamically(input);
   };
 
-  onSubmit(event) {
+
+  toggleList(event) {
     event.preventDefault();
     this.setState(() => ({
       showList: true,
-    }));
-  };
-
-  closeList() {
-    this.setState(() => ({
-      showList: false,
-      searchTerm: '',
     }));
   };
 
@@ -60,14 +49,14 @@ class SearchPage extends React.Component {
     return (
       <div>
         <h1>Search</h1>
-        <form onSubmit={this.onSubmit.bind(this)}>
+        <form onSubmit={this.toggleList.bind(this)}>
           <input
             type="text"
             onChange={this.handleChange}
           />
         {
           this.state.showList &&
-          <button type="reset" onClick={this.closeList.bind(this)}>Hide List</button>
+          <button type="reset" onClick={this.toggleList.bind(this)}>Hide List</button>
         }
         </form>
         {
