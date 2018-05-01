@@ -7,7 +7,7 @@ const MovieListItem = ({ id, title, desc, date, image }) => (
       <h5>{title}</h5>
       <h5>{date}</h5>
     </div>
-    <div>
+    <div className="movie-list__description">
       <p>{desc}</p>
     </div>
     <div className="movie-list__button-wrap">

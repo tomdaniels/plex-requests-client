@@ -3,13 +3,35 @@
   marging-bottom: 15px;
 }
 
+.movie-list__section-header {
+  color: $plex-orange;
+  font-style: italic;
+}
+
 .movie-list__title {
   display: flex;
   justify-content: space-between;
+  font-size: 25px;
+  color: $solid-white
+}
+
+.movie-list__description {
+  color: $light-grey;
+  font-style: italic;
+  font-weight: 100;
 }
 
 .movie-list__button {
+  border: 1px solid $plex-orange;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: $plex-orange;
+}
 
+.movie-list__button:hover {
+  color: $solid-white;
+  background-color: $plex-orange;
 }
 
 .movie-list__button-wrap {
