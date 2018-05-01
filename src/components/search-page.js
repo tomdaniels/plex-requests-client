@@ -47,17 +47,25 @@ class SearchPage extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Search</h1>
+      <div className="search-page__wrapper">
+        <h1 className="search-page__section-header">Search</h1>
+        <h3 className="search-page__sub-header">
+          Want to watch something but it's not currently on Plex? Select an option below and do a quick search!
+        </h3>
         <form onSubmit={this.toggleList.bind(this)}>
           <input
-            className="text-input"
+            className="search-page__text-input"
             type="text"
             onChange={this.handleChange}
           />
         {
           this.state.showList &&
-          <button type="reset" onClick={this.toggleList.bind(this)}>Hide List</button>
+          <button
+            className="search-page__button"
+            onClick={this.toggleList.bind(this)}
+          >
+            Hide List
+          </button>
         }
         </form>
         {

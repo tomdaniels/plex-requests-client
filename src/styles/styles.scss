@@ -1,5 +1,5 @@
-@import "general/settings";
+@import "./general/settings";
 @import "./general/general";
-@import "partials/header";
-@import "partials/inputs";
-@import "partials/list";
+@import "./partials/header";
+@import "./partials/list";
+@import "./partials/search-page.scss";
