@@ -41,7 +41,7 @@ class SearchPage extends React.Component {
   toggleList(event) {
     event.preventDefault();
     this.setState(() => ({
-      showList: true,
+      showList: !this.state.showList,
     }));
   };
 
@@ -51,6 +51,7 @@ class SearchPage extends React.Component {
         <h1>Search</h1>
         <form onSubmit={this.toggleList.bind(this)}>
           <input
+            className="text-input"
             type="text"
             onChange={this.handleChange}
           />
