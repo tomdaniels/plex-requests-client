@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import Select from 'react-select';
-import 'react-select/dist/react-select.css';
+import MovieList from './movie-list';
 
 class SearchPage extends React.Component {
   state = {
     searchTerm: '',
     movies: [],
+    showList: false,
   };
 
   getMoviesDynamically(input) {
@@ -27,8 +27,6 @@ class SearchPage extends React.Component {
       this.setState(() => ({
         movies,
       }));
-    } else {
-      return 'something went wrong, searching for that movie';
     }
     }).catch((err) => console.log(err));
   };
@@ -46,19 +44,36 @@ class SearchPage extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    console.log('render movies in list below');
+    this.setState(() => ({
+      showList: true,
+    }));
+  };
+
+  closeList() {
+    this.setState(() => ({
+      showList: false,
+      searchTerm: '',
+    }));
   };
 
   render() {
     return (
       <div>
         <h1>Search</h1>
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSubmit.bind(this)}>
           <input
             type="text"
-            onInput={this.handleChange}
+            onChange={this.handleChange}
           />
+        {
+          this.state.showList &&
+          <button type="reset" onClick={this.closeList.bind(this)}>Hide List</button>
+        }
         </form>
+        {
+          this.state.showList &&
+          <MovieList movies={this.state.movies} />
+        }
       </div>
     )
   }
