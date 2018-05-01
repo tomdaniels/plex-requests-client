@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 
 const MovieListItem = ({ id, title, desc, date, image }) => (
   <div>
-    <div>
+    <div className="movie-list__title">
       <h5>{title}</h5>
       <h5>{date}</h5>
     </div>
     <div>
       <p>{desc}</p>
     </div>
-    <div>
-      <button>Request</button>
+    <div className="movie-list__button-wrap">
+      <button className="movie-list__button">Request</button>
     </div>
   </div>
 );
