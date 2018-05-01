@@ -50,7 +50,7 @@ class SearchPage extends React.Component {
       <div className="search-page__wrapper">
         <h1 className="search-page__section-header">Search</h1>
         <h3 className="search-page__sub-header">
-          Want to watch something but it's not currently on Plex? Select an option below and do a quick search!
+          Want to watch a movie that's not on Plex? Add it yourself below!
         </h3>
         <form onSubmit={this.toggleList.bind(this)}>
           <input
