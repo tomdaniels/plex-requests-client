@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Header = ({title}) => (
+const Header = ({title}) => (
     <header>
       <div className="plex-requests__header-wrap">
         <div className="plex-requests__header-left">

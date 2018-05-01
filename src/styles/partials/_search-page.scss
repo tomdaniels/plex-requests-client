@@ -1,0 +1,40 @@
+.search-page__wrapper {
+  width: 60%;
+  margin: 80px auto;
+}
+
+.search-page__section-header {
+  color: $plex-orange;
+  font-size: 50px;
+  margin: -0.33em 0;
+}
+
+.search-page__sub-header {
+  color: $solid-white;
+  font-weight: lighter;
+}
+
+.search-page__text-input {
+  border: 1px solid #cacccd;
+  height: 50px;
+  width: 75%;
+  padding: $size-s;
+  font-size: $size-med-plus;
+  font-weight: 300;
+}
+
+.search-page__button {
+  border: 1px solid $plex-orange;
+  color: $plex-orange;
+  background-color: transparent;
+  height: 50px;
+  width: 10%;
+  padding: $size-s;
+  font-size: $size-med-plus;
+  font-weight: 300;
+}
+
+.search-page__button:hover {
+  color: $solid-white;
+  background-color: $plex-orange;
+}
