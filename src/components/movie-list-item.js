@@ -8,7 +8,7 @@ const MovieListItem = ({ id, title, desc, date, image }) => (
       <h5>{date}</h5>
     </div>
     <div className="movie-list__description">
-      <p>{desc}</p>
+      <p>{desc || 'Sorry, there is no description available for this movie.'}</p>
     </div>
     <div className="movie-list__button-wrap">
       <button className="movie-list__button">Request</button>
