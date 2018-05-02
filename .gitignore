@@ -15,3 +15,6 @@ public/styles.css.map
 # env variables
 .env.test
 .env.development
+
+# api key
+src/components/api-key.js
