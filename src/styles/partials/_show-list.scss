@@ -1,6 +1,6 @@
 .plex-requests__series-list {
   list-style-type: none;
-  marging-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .series-list__section-header {
@@ -32,6 +32,7 @@
   padding: 10px 20px;
   background-color: transparent;
   color: $plex-orange;
+  margin-right: 5px;
 }
 
 .series-list__button:hover {
