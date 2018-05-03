@@ -1,19 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import Modal from 'react-modal';
+import Seasons from './seasons';
+import apiKey from './api-key';
 
 class TvListItem extends React.Component {
   state ={
-    exandTvShow: false,
+    expandTvShow: false,
+    seasons: [],
   };
 
-  showExpandClick = () => {
+  toggleModal = () => {
     this.setState(() => ({
-      expandTvShow: true,
+      expandTvShow: !this.state.expandTvShow,
     }));
   };
 
   onFullSeriesClick = () => {
     console.log(this.props.id)
+  };
+
+  getSeasonData = () => {
+    const endpoint = `https://api.themoviedb.org/3/tv/${this.props.id}?api_key=${apiKey}`;
+    console.log(endpoint);
+
+    axios.get(endpoint).then((response) => {
+      if (response.status === 200) {
+        const results = response.data.seasons;
+        const seasons = results.map((result) => ({
+          date: result.air_date,
+          epCount: result.episode_count,
+          name: result.name,
+        }));
+        console.log(seasons);
+        this.setState(() => ({
+          seasons,
+        }));
+      }
+    }).catch((err) => console.log(err));
   };
 
   render() {
@@ -39,11 +64,22 @@ class TvListItem extends React.Component {
           </button>
           <button
             className="series-list__button"
-            onClick={this.showExpandClick}
+            onClick={this.toggleModal}
           >
             +
           </button>
         </div>
+        {
+          this.state.expandTvShow &&
+            <Modal
+              isOpen={this.state.expandTvShow}
+              onAfterOpen={this.getSeasonData}
+              onRequestClose={this.toggleModal}
+              ariaHideApp={false}
+            >
+              <Seasons seasons={this.state.seasons} />
+            </Modal>
+        }
       </div>
     )
   }
