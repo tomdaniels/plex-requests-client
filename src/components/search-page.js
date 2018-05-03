@@ -1,30 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import MovieList from './movie-list';
+import TvList from './tv-list';
 
 class SearchPage extends React.Component {
   state = {
-    movies: [],
+    series: [],
     showList: false,
   };
 
-  getMoviesDynamically(input) {
+  getListDynamically(input) {
     const encodedInput = input.includes(' ') ? input.replace(' ', '+') : input;
-    const endpoint = `https://api.themoviedb.org/3/search/movie?api_key=${this.props.apiKey}&query=${encodedInput}`;
+    const endpoint = `https://api.themoviedb.org/3/search/tv?api_key=${this.props.apiKey}&query=${encodedInput}`;
 
     axios.get(endpoint).then((res) => {
       if (res.status === 200) {
       const results = res.data.results;
-      const movies = results.map((result) => ({
+      const series = results.map((result) => ({
         id: result.id,
-        title: result.title,
+        title: result.name,
         desc: result.overview,
-        date: result.release_date,
-        image: result.poster_path,
+        date: result.first_air_date,
+        image: `http://image.tmdb.org/t/p/w185${result.poster_path}`,
       }));
       this.setState(() => ({
-        movies,
+        series,
       }));
     }
     }).catch((err) => console.log(err));
@@ -34,7 +34,7 @@ class SearchPage extends React.Component {
     e.preventDefault();
     const input = e.target.value;
 
-    this.getMoviesDynamically(input);
+    this.getListDynamically(input);
   };
 
 
@@ -50,7 +50,7 @@ class SearchPage extends React.Component {
       <div className="search-page__wrapper">
         <h1 className="search-page__section-header">Search</h1>
         <h3 className="search-page__sub-header">
-          Want to watch a movie that's not on Plex? Add it yourself below!
+          {'Want to watch something that\'s not on Plex? Add it yourself below!'}
         </h3>
         <form onSubmit={this.toggleList.bind(this)}>
           <input
@@ -70,7 +70,7 @@ class SearchPage extends React.Component {
         </form>
         {
           this.state.showList &&
-          <MovieList movies={this.state.movies} />
+          <TvList series={this.state.series} />
         }
       </div>
     )

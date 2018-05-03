@@ -1,0 +1,58 @@
+.plex-requests__series-list {
+  list-style-type: none;
+  margin-bottom: 15px;
+}
+
+.series-list__section-header {
+  color: $plex-orange;
+  font-style: italic;
+}
+
+.series-list__title {
+  display: flex;
+  justify-content: space-between;
+  font-size: 25px;
+  color: $solid-white
+}
+
+.series-list__poster {
+  margin-right: 10px;
+}
+
+.series-list__description {
+  color: $light-grey;
+  font-style: italic;
+  font-weight: 100;
+  display: flex;
+}
+
+.series-list__button {
+  border: 1px solid $plex-orange;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: $plex-orange;
+  margin-right: 5px;
+}
+
+.series-list__button:hover {
+  color: $solid-white;
+  background-color: $plex-orange;
+}
+
+.series-list__button-wrap {
+  text-align: right;
+}
+
+.series-list__expand-button {
+  color: $solid-white;
+  background-color: $plex-orange;
+  border: 1px solid $plex-orange;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+.series-list__expand-button:hover {
+  background-color: transparent;
+  color: $plex-orange;
+}
