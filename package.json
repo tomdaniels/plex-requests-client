@@ -47,5 +47,8 @@
     "jest": "22.4.0",
     "react-test-renderer": "16.2.0",
     "webpack-dev-server": "^2.11.1"
+  },
+  "engines": {
+    "node": "8.9.0"
   }
 }
