@@ -29,6 +29,7 @@ class TvListItem extends React.Component {
       if (response.status === 200) {
         const results = response.data.seasons;
         const seasons = results.map((result) => ({
+          id: result.id,
           date: result.air_date,
           epCount: result.episode_count,
           name: result.name,
