@@ -77,6 +77,7 @@ class TvListItem extends React.Component {
               onAfterOpen={this.getSeasonData}
               onRequestClose={this.toggleModal}
               ariaHideApp={false}
+              className="modal"
             >
               <Seasons title={this.props.title} seasons={this.state.seasons} />
             </Modal>

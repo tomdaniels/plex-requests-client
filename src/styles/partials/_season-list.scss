@@ -1,5 +1,13 @@
 .season-list__section-header {
   color: $plex-orange;
+  margin: 10px 0;
+  font-size: 40px;
+}
+
+.season-list__section-subheader {
+  margin: 0 0 30px 12px;
+  font-style: italic;
+  font-size: 20px;
 }
 
 .plex-requests__season-list-item {
@@ -11,4 +19,18 @@
 .plex-requests__seasons-list {
   list-style-type: none;
   margin: 0 20px 0 19px;
+}
+
+.plex-requests__season-request-button {
+  border: 1px solid $plex-orange;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: $plex-orange;
+  margin-right: 5px;
+}
+
+.plex-requests__season-request-button:hover {
+  color: $solid-white;
+  background-color: $plex-orange;
 }

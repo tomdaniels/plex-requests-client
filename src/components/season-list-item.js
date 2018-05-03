@@ -9,7 +9,7 @@ const SeasonListItem = ({ id, date, name, epCount, seriesId }) => {
   return (
     <div className="plex-requests__season-list-item">
       <div>{name} ({epCount === 1 ? '1 episode' : `${epCount} episodes`}) - {date}</div>
-      <button onClick={onClick}>Request Season</button>
+      <button onClick={onClick} className="plex-requests__season-request-button">Request Season</button>
     </div>
   )
 };

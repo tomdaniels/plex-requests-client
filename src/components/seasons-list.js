@@ -6,6 +6,7 @@ const Seasons = ({ title, seasons }) => (
     <h4 className="season-list__section-header">
       {title}
     </h4>
+    <h6 className="season-list__section-subheader">{seasons.length === 1 ? '1 Season found' : `${seasons.length} seasons found`}</h6>
     <ul>
       {
         seasons.length > 0 ? (seasons.map((season) => (

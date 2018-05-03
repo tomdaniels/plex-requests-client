@@ -1,6 +1,20 @@
+.modal {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+}
+
 .ReactModal__Overlay {
     opacity: 0;
-    color: $solid-grey;
+    color: $light-grey;
     transition: opacity 200ms ease-in-out;
 }
 
@@ -19,4 +33,5 @@
 .ReactModal__Content.ReactModal__Content--after-open {
   max-width: 1020px;
   margin: 0 auto;
+  background-color: $dark-grey;
 }

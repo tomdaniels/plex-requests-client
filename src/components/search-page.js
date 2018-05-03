@@ -9,7 +9,7 @@ class SearchPage extends React.Component {
     showList: false,
   };
 
-  getListDynamically(input) {
+  getTvShows(input) {
     const encodedInput = input.includes(' ') ? input.replace(' ', '+') : input;
     const endpoint = `https://api.themoviedb.org/3/search/tv?api_key=${this.props.apiKey}&query=${encodedInput}`;
 
@@ -17,6 +17,7 @@ class SearchPage extends React.Component {
       if (res.status === 200) {
       const results = res.data.results;
       const series = results.map((result) => ({
+        source: 'tv',
         id: result.id,
         title: result.name,
         desc: result.overview,
@@ -34,7 +35,7 @@ class SearchPage extends React.Component {
     e.preventDefault();
     const input = e.target.value;
 
-    this.getListDynamically(input);
+    this.getTvShows(input);
   };
 
 
