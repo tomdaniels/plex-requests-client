@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Show from './tv-list-item';
 
-const TvList = ({ series }) => (
+const TvList = ({ series, apiKey }) => (
   <div>
     <h4 className="series-list__section-header">
       {series.length === 1 ? `1 result found` : `${series.length} results found`}
@@ -11,7 +11,7 @@ const TvList = ({ series }) => (
       {
         series.length > 0 && series.map((show) => (
           <li key={show.id} className="plex-requests__series-list">
-            <Show {...show} />
+            <Show apiKey={apiKey} {...show} />
           </li>
         ))
       }

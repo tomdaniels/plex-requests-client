@@ -74,7 +74,7 @@ class SearchPage extends React.Component {
         </form>
         {
           this.state.showList &&
-          <TvList series={this.state.series} />
+          <TvList series={this.state.series} apiKey={this.props.apiKey} />
         }
       </div>
     )

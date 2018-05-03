@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from './header';
-import apiKey from './api-key';
 import SearchPage from './search-page';
 
 const Landing = () => (
