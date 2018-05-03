@@ -63,26 +63,13 @@
   background-color: transparent;
   color: $plex-orange;
   margin-right: 5px;
-}
 
-.series-list__button:hover {
-  color: $solid-white;
-  background-color: $plex-orange;
+  &:hover {
+    color: $solid-white;
+    background-color: $plex-orange;
+  }
 }
 
 .series-list__button-wrap {
   text-align: right;
-}
-
-.series-list__expand-button {
-  color: $solid-white;
-  background-color: $plex-orange;
-  border: 1px solid $plex-orange;
-  border-radius: 5px;
-  padding: 10px 20px;
-}
-
-.series-list__expand-button:hover {
-  background-color: transparent;
-  color: $plex-orange;
 }

@@ -41,14 +41,13 @@
   font-weight: 300;
   display: none;
 
+  &:hover {
+    color: $solid-white;
+    background-color: $plex-orange;
+  }
   @media (min-width: $breakpoint) {
     display: flex;
   }
-}
-
-.search-page__button:hover {
-  color: $solid-white;
-  background-color: $plex-orange;
 }
 
 .search-page__form-wrapper {
