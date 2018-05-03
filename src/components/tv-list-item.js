@@ -19,7 +19,7 @@ class TvListItem extends React.Component {
 
   onFullSeriesClick = () => {
     //TODO: make api to store tvID for sonarr PUT api call on local.
-    console.log(this.props.id)
+    alert(`TODO: Build API to send request for series ID: ${this.props.id}`);
   };
 
   getSeasonData = () => {

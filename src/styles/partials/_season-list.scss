@@ -10,15 +10,28 @@
   font-size: 20px;
 }
 
-.plex-requests__season-list-item {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
 .plex-requests__seasons-list {
   list-style-type: none;
   margin: 0 20px 0 19px;
+}
+
+
+.plex-requests__season-list-item {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid darken($dark-grey, 10);
+  padding: $size-s;
+  text-decoration: none;
+  transition: background .3s ease;
+  &:hover {
+    background: darken($dark-grey, 10);
+  }
+  @media (min-width: $breakpoint) {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: $size-med;
+  }
 }
 
 .plex-requests__season-request-button {
