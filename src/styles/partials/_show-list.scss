@@ -10,13 +10,38 @@
 
 .series-list__title {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   font-size: 25px;
-  color: $solid-white
+  color: $solid-white;
+  text-align: center;
+
+  @media (min-width: $breakpoint) {
+    flex-direction: row;
+  }
+}
+
+.series-list__series-name {
+  margin: 0;
+  @media (min-width: $breakpoint) {
+    margin: 20px 0;
+  }
+}
+.series-list__series-date {
+  margin: 0;
+  @media (min-width: $breakpoint) {
+    margin: 20px 0;
+  }
 }
 
 .series-list__poster {
-  margin-right: 20px;
+  margin-right: 25px;
+  height: 250px;
+  width: auto;
+
+  @media (min-width: $breakpoint) {
+    height: auto;
+  }
 }
 
 .series-list__description {
@@ -24,6 +49,11 @@
   font-style: italic;
   font-weight: 100;
   display: flex;
+  flex-direction: column;
+
+  @media (min-width: $breakpoint) {
+    flex-direction: row;
+  }
 }
 
 .series-list__button {

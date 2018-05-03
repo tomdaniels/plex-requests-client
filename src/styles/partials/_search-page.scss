@@ -1,6 +1,10 @@
 .search-page__wrapper {
-  width: 60%;
+  width: 90%;
   margin: 80px auto;
+
+  @media (min-width: $breakpoint) {
+    width: 60%;
+  }
 }
 
 .search-page__section-header {
@@ -17,10 +21,14 @@
 .search-page__text-input {
   border: 1px solid #cacccd;
   height: 50px;
-  width: 90%;
+  width: 100%;
   padding: $size-s;
   font-size: $size-med-plus;
   font-weight: 300;
+
+  @media (min-width: $breakpoint) {
+    width: 90%;
+  }
 }
 
 .search-page__button {
@@ -31,6 +39,11 @@
   width: 100px;
   font-size: $size-med-plus;
   font-weight: 300;
+  display: none;
+
+  @media (min-width: $breakpoint) {
+    display: flex;
+  }
 }
 
 .search-page__button:hover {

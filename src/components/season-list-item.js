@@ -8,14 +8,10 @@ const SeasonListItem = ({ id, date, name, epCount, seriesId }) => {
 
   return (
     <div className="plex-requests__season-list-item">
-      <div>
-        <div className="list-item__title">
-          {name}
-        </div>
+      <div className="plex-requests__season-headlines">
+        <div>{name}</div>
+        <div>{date}</div>
         <div>
-          {date}
-        </div>
-        <div className="list-item__subtitle">
           {epCount === 1 ? '1 episode' : `${epCount} episodes`}
         </div>
       </div>
