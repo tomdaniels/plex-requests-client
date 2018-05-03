@@ -15,6 +15,13 @@
   margin: 0 20px 0 19px;
 }
 
+.plex-requests__season-headlines {
+  text-align: center;
+
+  @media (min-width: $breakpoint) {
+    text-align: left;
+  }
+}
 
 .plex-requests__season-list-item {
   display: flex;
@@ -40,7 +47,11 @@
   padding: 10px 20px;
   background-color: transparent;
   color: $plex-orange;
-  margin-right: 5px;
+  margin: 10px 0 0;
+
+  @media (min-width: $breakpoint) {
+    margin-top: 0;
+  }
 }
 
 .plex-requests__season-request-button:hover {

@@ -45,8 +45,8 @@ class TvListItem extends React.Component {
     return (
       <div>
         <div className="series-list__title">
-          <h5>{this.props.title}</h5>
-          <h5>{this.props.date}</h5>
+          <h5 className="series-list__series-name">{this.props.title}</h5>
+          <h5 className="series-list__series-date">{this.props.date}</h5>
         </div>
         <div className="series-list__description">
           {
