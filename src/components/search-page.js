@@ -9,7 +9,7 @@ class SearchPage extends React.Component {
     showList: false,
   };
 
-  getListDynamically(input) {
+  getTvShows(input) {
     const encodedInput = input.includes(' ') ? input.replace(' ', '+') : input;
     const endpoint = `https://api.themoviedb.org/3/search/tv?api_key=${this.props.apiKey}&query=${encodedInput}`;
 
@@ -17,11 +17,12 @@ class SearchPage extends React.Component {
       if (res.status === 200) {
       const results = res.data.results;
       const series = results.map((result) => ({
+        source: 'tv',
         id: result.id,
         title: result.name,
         desc: result.overview,
         date: result.first_air_date,
-        image: `http://image.tmdb.org/t/p/w185${result.poster_path}`,
+        imageSlug: `${result.poster_path}`,
       }));
       this.setState(() => ({
         series,
@@ -34,7 +35,7 @@ class SearchPage extends React.Component {
     e.preventDefault();
     const input = e.target.value;
 
-    this.getListDynamically(input);
+    this.getTvShows(input);
   };
 
 
@@ -52,7 +53,10 @@ class SearchPage extends React.Component {
         <h3 className="search-page__sub-header">
           {'Want to watch something that\'s not on Plex? Add it yourself below!'}
         </h3>
-        <form onSubmit={this.toggleList.bind(this)}>
+        <form
+          className="search-page__form-wrapper"
+          onSubmit={this.toggleList.bind(this)}
+        >
           <input
             className="search-page__text-input"
             type="text"

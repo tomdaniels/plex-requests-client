@@ -28,7 +28,7 @@
   color: $plex-orange;
   background-color: transparent;
   height: 50px;
-  width: 10%;
+  width: 100px;
   font-size: $size-med-plus;
   font-weight: 300;
 }
@@ -36,4 +36,8 @@
 .search-page__button:hover {
   color: $solid-white;
   background-color: $plex-orange;
+}
+
+.search-page__form-wrapper {
+  display: flex;
 }

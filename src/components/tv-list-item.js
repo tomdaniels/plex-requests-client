@@ -1,19 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import Modal from 'react-modal';
+import Seasons from './seasons-list';
+import apiKey from './api-key';
 
 class TvListItem extends React.Component {
   state ={
-    exandTvShow: false,
+    expandTvShow: false,
+    seasons: [],
   };
 
-  showExpandClick = () => {
+  toggleModal = () => {
     this.setState(() => ({
-      expandTvShow: true,
+      expandTvShow: !this.state.expandTvShow,
     }));
   };
 
   onFullSeriesClick = () => {
-    console.log(this.props.id)
+    //TODO: make api to store tvID for sonarr PUT api call on local.
+    alert(`TODO: Build API to send request for series ID: ${this.props.id}`);
+  };
+
+  getSeasonData = () => {
+    const endpoint = `https://api.themoviedb.org/3/tv/${this.props.id}?api_key=${apiKey}`;
+
+    axios.get(endpoint).then((response) => {
+      if (response.status === 200) {
+        const results = response.data.seasons;
+        const seasons = results.map((result) => ({
+          id: result.id,
+          date: result.air_date,
+          epCount: result.episode_count,
+          name: result.name,
+          seriesId: this.props.id,
+        }));
+        this.setState(() => ({
+          seasons,
+        }));
+      }
+    }).catch((err) => console.log(err));
   };
 
   render() {
@@ -24,8 +50,11 @@ class TvListItem extends React.Component {
           <h5>{this.props.date}</h5>
         </div>
         <div className="series-list__description">
-          <img className="series-list__poster" src={this.props.image} alt={`Series Poster, ${this.props.title}`} />
-          <p>{this.props.desc || 'Sorry, there is no description available for this series.'}</p>
+          {
+            this.props.imageSlug !== 'null' &&
+              <img className="series-list__poster" src={`http://image.tmdb.org/t/p/w185${this.props.imageSlug}`} alt={`Series Poster, ${this.props.title}`} />
+          }
+          <p>{this.props.desc || 'Sorry, there is no description available for this series. '}</p>
         </div>
         <div className="series-list__button-wrap">
           <button
@@ -36,11 +65,23 @@ class TvListItem extends React.Component {
           </button>
           <button
             className="series-list__button"
-            onClick={this.showExpandClick}
+            onClick={this.toggleModal}
           >
             +
           </button>
         </div>
+        {
+          this.state.expandTvShow &&
+            <Modal
+              isOpen={this.state.expandTvShow}
+              onAfterOpen={this.getSeasonData}
+              onRequestClose={this.toggleModal}
+              ariaHideApp={false}
+              className="modal"
+            >
+              <Seasons title={this.props.title} seasons={this.state.seasons} />
+            </Modal>
+        }
       </div>
     )
   }
