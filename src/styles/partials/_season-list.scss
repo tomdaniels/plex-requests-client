@@ -2,9 +2,10 @@
   color: $plex-orange;
 }
 
-.plex-requests__season-list {
+.plex-requests__season-list-item {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .plex-requests__seasons-list {
