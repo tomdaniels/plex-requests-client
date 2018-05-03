@@ -52,7 +52,10 @@ class SearchPage extends React.Component {
         <h3 className="search-page__sub-header">
           {'Want to watch something that\'s not on Plex? Add it yourself below!'}
         </h3>
-        <form onSubmit={this.toggleList.bind(this)}>
+        <form
+          className="search-page__form-wrapper"
+          onSubmit={this.toggleList.bind(this)}
+        >
           <input
             className="search-page__text-input"
             type="text"
