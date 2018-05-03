@@ -33,6 +33,7 @@ class TvListItem extends React.Component {
           date: result.air_date,
           epCount: result.episode_count,
           name: result.name,
+          seriesId: this.props.id,
         }));
         this.setState(() => ({
           seasons,

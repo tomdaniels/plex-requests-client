@@ -1,9 +1,9 @@
 import React from 'react';
 
-const SeasonListItem = ({ id, date, name, epCount }) => {
+const SeasonListItem = ({ id, date, name, epCount, seriesId }) => {
 
   const onClick = () => {
-    console.log(id)
+    console.log(`series id: ${seriesId}. season id: ${id}`);
   }
 
   return (
