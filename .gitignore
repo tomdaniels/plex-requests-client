@@ -7,10 +7,7 @@
 .idea/
 
 # auto-generated code
-public/bundle.js
-public/bundle.js.map
-public/styles.css
-public/styles.css.map
+public/dist/
 
 # env variables
 .env.test
