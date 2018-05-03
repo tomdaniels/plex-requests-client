@@ -8,6 +8,10 @@
     opacity: 1;
 }
 
+.ReactModal__Body--open {
+  overflow-y: hidden;
+}
+
 .ReactModal__Overlay--before-close{
     opacity: 0;
 }
