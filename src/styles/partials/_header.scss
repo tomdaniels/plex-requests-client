@@ -13,9 +13,13 @@
 };
 
 .plex-requests__header-left {
-  width: 75%;
+  width: 90%;
   display: flex;
   margin: 0 auto;
+
+  @media (min-width: $breakpoint) {
+    width: 90%;
+  }
 };
 
 .plex-requests__header-item {
