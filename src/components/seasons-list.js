@@ -9,7 +9,7 @@ const Seasons = ({ title, seasons }) => (
     <ul>
       {
         seasons.length > 0 ? (seasons.map((season) => (
-          <li key={season.id}>
+          <li key={season.id} className="plex-requests__seasons-list">
             <SeasonListItem {...season} />
           </li>
         ))) : (
