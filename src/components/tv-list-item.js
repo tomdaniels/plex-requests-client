@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Modal from 'react-modal';
-import Seasons from './seasons';
+import Seasons from './seasons-list';
 import apiKey from './api-key';
 
 class TvListItem extends React.Component {
@@ -23,7 +23,6 @@ class TvListItem extends React.Component {
 
   getSeasonData = () => {
     const endpoint = `https://api.themoviedb.org/3/tv/${this.props.id}?api_key=${apiKey}`;
-    console.log(endpoint);
 
     axios.get(endpoint).then((response) => {
       if (response.status === 200) {
@@ -33,7 +32,6 @@ class TvListItem extends React.Component {
           epCount: result.episode_count,
           name: result.name,
         }));
-        console.log(seasons);
         this.setState(() => ({
           seasons,
         }));
@@ -77,7 +75,7 @@ class TvListItem extends React.Component {
               onRequestClose={this.toggleModal}
               ariaHideApp={false}
             >
-              <Seasons seasons={this.state.seasons} />
+              <Seasons title={this.props.title} seasons={this.state.seasons} />
             </Modal>
         }
       </div>
