@@ -53,12 +53,12 @@
   color: $plex-orange;
   margin: 10px 0 0;
 
+  &:hover {
+    color: $solid-white;
+    background-color: $plex-orange;
+  }
+
   @media (min-width: $breakpoint) {
     margin-top: 0;
   }
-}
-
-.plex-requests__season-request-button:hover {
-  color: $solid-white;
-  background-color: $plex-orange;
 }
