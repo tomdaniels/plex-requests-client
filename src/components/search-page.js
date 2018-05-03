@@ -21,7 +21,7 @@ class SearchPage extends React.Component {
         title: result.name,
         desc: result.overview,
         date: result.first_air_date,
-        image: `http://image.tmdb.org/t/p/w185${result.poster_path}`,
+        imageSlug: `${result.poster_path}`,
       }));
       this.setState(() => ({
         series,

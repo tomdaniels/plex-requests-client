@@ -24,8 +24,11 @@ class TvListItem extends React.Component {
           <h5>{this.props.date}</h5>
         </div>
         <div className="series-list__description">
-          <img className="series-list__poster" src={this.props.image} alt={`Series Poster, ${this.props.title}`} />
-          <p>{this.props.desc || 'Sorry, there is no description available for this series.'}</p>
+          {
+            this.props.imageSlug !== 'null' &&
+              <img className="series-list__poster" src={`http://image.tmdb.org/t/p/w185${this.props.imageSlug}`} alt={`Series Poster, ${this.props.title}`} />
+          }
+          <p>{this.props.desc || 'Sorry, there is no description available for this series. '}</p>
         </div>
         <div className="series-list__button-wrap">
           <button
