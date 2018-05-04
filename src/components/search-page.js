@@ -23,7 +23,7 @@ class SearchPage extends React.Component {
         title: result.name,
         desc: result.overview,
         date: result.first_air_date,
-        imageSlug: result.poster_path,
+        imageSlug: `${result.poster_path}`,
       }));
       this.setState(() => ({
         media,
@@ -39,11 +39,14 @@ class SearchPage extends React.Component {
           title: result.title,
           desc: result.overview,
           date: result.release_date,
-          imageSlug: result.poster_path,
+          imageSlug: `${result.poster_path}`,
         }));
-        this.setState((prevState) => ({
-          media: prevState.media.concat(movies),
-        }));
+        this.setState((prevState) => {
+          const sortedList = prevState.media.concat(movies).sort();
+          return {
+            media: sortedList,
+          }
+        });
       }
     })
   }).catch((err) => console.log(err));
