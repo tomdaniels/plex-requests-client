@@ -56,9 +56,17 @@ class MediaListItem extends React.Component {
         <div className="media-list__description">
           {
             this.props.imageSlug !== 'null' &&
-              <img className="media-list__poster" src={`http://image.tmdb.org/t/p/w185${this.props.imageSlug}`} alt={`Series Poster, ${this.props.title}`} />
+              <img className="media-list__poster"
+              src={`http://image.tmdb.org/t/p/w185${this.props.imageSlug}`}
+              alt={`${this.props.source === 'tv' ? 'Series' : 'Movie'} Poster, ${this.props.title}`}
+              />
           }
-          <p>{this.props.desc || 'Sorry, there is no description available for this series. '}</p>
+          <p>
+            {
+              this.props.desc || `Sorry, there is no description available for this
+              ${this.props.source === 'tv' ? 'series' : 'movie'}. `
+            }
+          </p>
         </div>
         <div className="media-list__button-wrap">
           {
