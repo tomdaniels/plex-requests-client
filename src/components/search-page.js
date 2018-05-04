@@ -9,11 +9,12 @@ class SearchPage extends React.Component {
     showList: false,
   };
 
-  getTvShows(input) {
+  getMedia(input) {
     const encodedInput = input.includes(' ') ? input.replace(' ', '+') : input;
-    const endpoint = `https://api.themoviedb.org/3/search/tv?api_key=${this.props.apiKey}&query=${encodedInput}`;
+    const tvEndpoint = `https://api.themoviedb.org/3/search/tv?api_key=${this.props.apiKey}&query=${encodedInput}`;
+    const movieEndpoint = `https://api.themoviedb.org/3/search/movie?api_key=${this.props.apiKey}&query=${encodedInput}`;
 
-    axios.get(endpoint).then((res) => {
+    axios.get(tvEndpoint).then((res) => {
       if (res.status === 200) {
       const results = res.data.results;
       const media = results.map((result) => ({
@@ -22,20 +23,37 @@ class SearchPage extends React.Component {
         title: result.name,
         desc: result.overview,
         date: result.first_air_date,
-        imageSlug: `${result.poster_path}`,
+        imageSlug: result.poster_path,
       }));
       this.setState(() => ({
         media,
       }));
     }
-    }).catch((err) => console.log(err));
+  }).then(() => {
+    axios.get(movieEndpoint).then((response) => {
+      if (response.status === 200) {
+        const results = response.data.results;
+        const movies = results.map((result) => ({
+          source: 'movie',
+          id: result.id,
+          title: result.title,
+          desc: result.overview,
+          date: result.release_date,
+          imageSlug: result.poster_path,
+        }));
+        this.setState((prevState) => ({
+          media: prevState.media.concat(movies),
+        }));
+      }
+    })
+  }).catch((err) => console.log(err));
   };
 
   handleChange = (e) => {
     e.preventDefault();
     const input = e.target.value;
 
-    this.getTvShows(input);
+    this.getMedia(input);
   };
 
 
