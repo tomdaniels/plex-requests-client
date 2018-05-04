@@ -19,7 +19,7 @@
   padding: 0;
 }
 
-.plex-requests__season-headlines {
+.season-list-item__headlines {
   text-align: center;
 
   @media (min-width: $breakpoint) {
@@ -27,7 +27,7 @@
   }
 }
 
-.plex-requests__season-list-item {
+.season-list-item__wrapper {
   display: flex;
   flex-direction: column;
   border: 1px solid darken($dark-grey, 10);
@@ -45,7 +45,7 @@
   }
 }
 
-.plex-requests__season-request-button {
+.season-list-item__request-button {
   border: 1px solid $plex-orange;
   border-radius: 5px;
   padding: 10px 20px;

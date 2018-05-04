@@ -4,7 +4,7 @@ import axios from 'axios';
 import Modal from 'react-modal';
 import Seasons from './seasons-list';
 
-class TvListItem extends React.Component {
+class MediaListItem extends React.Component {
   state ={
     expandTvShow: false,
     seasons: [],
@@ -14,6 +14,11 @@ class TvListItem extends React.Component {
     this.setState(() => ({
       expandTvShow: !this.state.expandTvShow,
     }));
+  };
+
+  onMovieRequestClick = () => {
+    //TODO: make api to store tvID for sonarr PUT api call on local.
+    alert(`TODO: Build API to send request for movie ID: ${this.props.id}`);
   };
 
   onFullSeriesClick = () => {
@@ -44,30 +49,51 @@ class TvListItem extends React.Component {
   render() {
     return (
       <div>
-        <div className="series-list__title">
-          <h5 className="series-list__series-name">{this.props.title}</h5>
-          <h5 className="series-list__series-date">{this.props.date}</h5>
+        <div className="media-list__title">
+          <h5 className="media-list__media-name">{this.props.title}</h5>
+          <h5 className="media-list__media-date">{this.props.date}</h5>
         </div>
-        <div className="series-list__description">
+        <div className="media-list__description">
           {
             this.props.imageSlug !== 'null' &&
-              <img className="series-list__poster" src={`http://image.tmdb.org/t/p/w185${this.props.imageSlug}`} alt={`Series Poster, ${this.props.title}`} />
+              <img className="media-list__poster"
+              src={`http://image.tmdb.org/t/p/w185${this.props.imageSlug}`}
+              alt={`${this.props.source === 'tv' ? 'Series' : 'Movie'} Poster, ${this.props.title}`}
+              />
           }
-          <p>{this.props.desc || 'Sorry, there is no description available for this series. '}</p>
+          <p>
+            {
+              this.props.desc || `Sorry, there is no description available for this
+              ${this.props.source === 'tv' ? 'series' : 'movie'}. `
+            }
+          </p>
         </div>
-        <div className="series-list__button-wrap">
-          <button
-            className="series-list__button"
-            onClick={this.onFullSeriesClick}
-          >
-            Request Entire Series
-          </button>
-          <button
-            className="series-list__button"
-            onClick={this.toggleModal}
-          >
-            +
-          </button>
+        <div className="media-list__button-wrap">
+          {
+            this.props.source === 'tv' ? (
+              <div>
+                <button
+                  className="media-list__button"
+                  onClick={this.onFullSeriesClick}
+                >
+                  Request Entire Series
+                </button>
+                <button
+                  className="media-list__button"
+                  onClick={this.toggleModal}
+                >
+                  +
+                </button>
+              </div>
+            ) : (
+              <button
+                className="media-list__button"
+                onClick={this.onMovieRequestClick}
+              >
+                Request Movie
+              </button>
+            )
+          }
         </div>
         {
           this.state.expandTvShow &&
@@ -88,9 +114,9 @@ class TvListItem extends React.Component {
 
 
 
-TvListItem.propTypes = {
+MediaListItem.propTypes = {
   apiKey: PropTypes.string.isRequired,
-  show: PropTypes.shape({
+  media: PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
     desc: PropTypes.string,
@@ -99,4 +125,4 @@ TvListItem.propTypes = {
   }),
 };
 
-export default TvListItem;
+export default MediaListItem;
