@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import TvList from './tv-list';
+import MediaList from './media-list';
 
 class SearchPage extends React.Component {
   state = {
-    series: [],
+    media: [],
     showList: false,
   };
 
@@ -16,7 +16,7 @@ class SearchPage extends React.Component {
     axios.get(endpoint).then((res) => {
       if (res.status === 200) {
       const results = res.data.results;
-      const series = results.map((result) => ({
+      const media = results.map((result) => ({
         source: 'tv',
         id: result.id,
         title: result.name,
@@ -25,7 +25,7 @@ class SearchPage extends React.Component {
         imageSlug: `${result.poster_path}`,
       }));
       this.setState(() => ({
-        series,
+        media,
       }));
     }
     }).catch((err) => console.log(err));
@@ -74,7 +74,7 @@ class SearchPage extends React.Component {
         </form>
         {
           this.state.showList &&
-          <TvList series={this.state.series} apiKey={this.props.apiKey} />
+          <MediaList media={this.state.media} apiKey={this.props.apiKey} />
         }
       </div>
     )

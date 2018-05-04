@@ -7,8 +7,8 @@ const SeasonListItem = ({ id, date, name, epCount, seriesId }) => {
   }
 
   return (
-    <div className="plex-requests__season-list-item">
-      <div className="plex-requests__season-headlines">
+    <div className="season-list-item__wrapper">
+      <div className="season-list-item___headlines">
         <div>{name}</div>
         <div>{date}</div>
         <div>
@@ -17,7 +17,7 @@ const SeasonListItem = ({ id, date, name, epCount, seriesId }) => {
       </div>
       <button
         onClick={onClick}
-        className="plex-requests__season-request-button"
+        className="season-list-item__request-button"
       >
         Request Season
       </button>

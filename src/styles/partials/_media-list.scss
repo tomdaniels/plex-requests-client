@@ -1,14 +1,14 @@
-.plex-requests__series-list {
+.plex-requests__media-list {
   list-style-type: none;
   margin-bottom: 15px;
 }
 
-.series-list__section-header {
+.media-list__section-header {
   color: $plex-orange;
   font-style: italic;
 }
 
-.series-list__title {
+.media-list__title {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -21,20 +21,20 @@
   }
 }
 
-.series-list__series-name {
+.media-list__media-name {
   margin: 0;
   @media (min-width: $breakpoint) {
     margin: 20px 0;
   }
 }
-.series-list__series-date {
+.media-list__media-date {
   margin: 0;
   @media (min-width: $breakpoint) {
     margin: 20px 0;
   }
 }
 
-.series-list__poster {
+.media-list__poster {
   margin-right: 25px;
   height: 450px;
   width: auto;
@@ -44,7 +44,7 @@
   }
 }
 
-.series-list__description {
+.media-list__description {
   color: $light-grey;
   font-style: italic;
   font-weight: 100;
@@ -56,7 +56,7 @@
   }
 }
 
-.series-list__button {
+.media-list__button {
   border: 1px solid $plex-orange;
   border-radius: 5px;
   padding: 10px 20px;
@@ -70,6 +70,6 @@
   }
 }
 
-.series-list__button-wrap {
+.media-list__button-wrap {
   text-align: right;
 }
