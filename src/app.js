@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Dashboard from './components/dashboard';
+import Landing from './components/landing';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
-ReactDOM.render(<Dashboard />, document.getElementById('app'));
+ReactDOM.render(<Landing />, document.getElementById('app'));
