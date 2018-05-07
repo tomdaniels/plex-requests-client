@@ -11,8 +11,8 @@ class SearchPage extends React.Component {
 
   getMedia(input) {
     const encodedInput = input.includes(' ') ? input.replace(' ', '+') : input;
-    const tvEndpoint = `https://api.themoviedb.org/3/search/tv?api_key=${this.props.apiKey}&query=${encodedInput}`;
-    const movieEndpoint = `https://api.themoviedb.org/3/search/movie?api_key=${this.props.apiKey}&query=${encodedInput}`;
+    const tvEndpoint = `https://api.themoviedb.org/3/search/tv?api_key=${this.props.apiKey}&query=${encodedInput}&sort_by=popularity.desc`;
+    const movieEndpoint = `https://api.themoviedb.org/3/search/movie?api_key=${this.props.apiKey}&query=${encodedInput}&sort_by=popularity.desc`;
 
     axios.get(tvEndpoint).then((res) => {
       if (res.status === 200) {
@@ -42,9 +42,8 @@ class SearchPage extends React.Component {
           imageSlug: `${result.poster_path}`,
         }));
         this.setState((prevState) => {
-          const sortedList = prevState.media.concat(movies).sort();
           return {
-            media: sortedList,
+            media: prevState.media.concat(movies).sort(),
           }
         });
       }
@@ -57,6 +56,13 @@ class SearchPage extends React.Component {
     const input = e.target.value;
 
     this.getMedia(input);
+  };
+
+  clearList = () => {
+    this.setState(() => ({
+      media: [],
+      showList: false,
+    }));
   };
 
 
@@ -87,9 +93,9 @@ class SearchPage extends React.Component {
           this.state.showList &&
           <button
             className="search-page__button"
-            onClick={this.toggleList.bind(this)}
+            onClick={this.clearList.bind(this)}
           >
-            Hide List
+            Clear List
           </button>
         }
         </form>
