@@ -11,8 +11,8 @@ class SearchPage extends React.Component {
 
   getMedia(input) {
     const encodedInput = input.includes(' ') ? input.replace(' ', '+') : input;
-    const tvEndpoint = `https://api.themoviedb.org/3/search/tv?api_key=${this.props.apiKey}&query=${encodedInput}&sort_by=popularity.desc`;
-    const movieEndpoint = `https://api.themoviedb.org/3/search/movie?api_key=${this.props.apiKey}&query=${encodedInput}&sort_by=popularity.desc`;
+    const tvEndpoint = `https://api.themoviedb.org/3/search/tv?api_key=${this.props.apiKey}&query=${encodedInput}&sort_by=popularity`;
+    const movieEndpoint = `https://api.themoviedb.org/3/search/movie?api_key=${this.props.apiKey}&query=${encodedInput}&sort_by=popularity`;
 
     axios.get(tvEndpoint).then((res) => {
       if (res.status === 200) {
@@ -23,6 +23,7 @@ class SearchPage extends React.Component {
         title: result.name,
         desc: result.overview,
         date: result.first_air_date,
+        popularity: result.popularity,
         imageSlug: `${result.poster_path}`,
       }));
       this.setState(() => ({
@@ -39,11 +40,16 @@ class SearchPage extends React.Component {
           title: result.title,
           desc: result.overview,
           date: result.release_date,
+          popularity: result.popularity,
           imageSlug: `${result.poster_path}`,
         }));
         this.setState((prevState) => {
           return {
-            media: prevState.media.concat(movies).sort(),
+            media: prevState.media.concat(movies).sort(function(a, b) {
+              if (a.popularity < b.popularity) {
+                return -1;
+              }
+            }),
           }
         });
       }
