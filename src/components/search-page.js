@@ -30,7 +30,13 @@ class SearchPage extends React.Component {
         media,
       }));
     }
-  }).then(() => {
+  }).catch((err) => console.log(err));
+  };
+
+  getMoreMedia(input) {
+    const encodedInput = input.includes(' ') ? input.replace(' ', '+') : input;
+    const movieEndpoint = `https://api.themoviedb.org/3/search/movie?api_key=${this.props.apiKey}&query=${encodedInput}&sort_by=popularity`;
+
     axios.get(movieEndpoint).then((response) => {
       if (response.status === 200) {
         const results = response.data.results;
@@ -43,25 +49,19 @@ class SearchPage extends React.Component {
           popularity: result.popularity,
           imageSlug: `${result.poster_path}`,
         }));
-        this.setState((prevState) => {
-          return {
-            media: prevState.media.concat(movies).sort(function(a, b) {
-              if (a.popularity < b.popularity) {
-                return -1;
-              }
-            }),
-          }
-        });
+        this.setState((prevState) => ({
+          media: prevState.media.concat(movies),
+        }));
       }
-    })
-  }).catch((err) => console.log(err));
-  };
+    }).catch((error) => console.log(error));
+  }
 
   handleChange = (e) => {
     e.preventDefault();
     const input = e.target.value;
 
     this.getMedia(input);
+    this.getMoreMedia(input);
   };
 
   clearList = () => {
