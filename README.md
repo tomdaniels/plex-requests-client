@@ -7,4 +7,4 @@ Online interface for users to requests new shows to a Plex server.
 #### TODO
 
 - Complete API to store movieDB id's from user requests: [requests-api](https://github.com/tomdaniels/plex-requests-api)
-- Create local API to obtain MovieDB ID's.
+- Create local API to obtain MovieDB ID's and manage local filesystem
