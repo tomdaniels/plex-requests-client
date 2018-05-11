@@ -3,7 +3,7 @@ import React from 'react';
 const SeasonListItem = ({ id, date, name, epCount, seriesId }) => {
 
   const onClick = () => {
-    alert(`TODO: build api to send request for: series id ${seriesId}, season id ${id}`);
+    alert(`TODO: finish https://github.com/tomdaniels/plex-requests-api to handle: series id ${seriesId}, season id ${id}`);
   }
 
   return (

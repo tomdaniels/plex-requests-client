@@ -23,7 +23,7 @@ class MediaListItem extends React.Component {
 
   onFullSeriesClick = () => {
     //TODO: make api to store tvID for sonarr PUT api call on local.
-    alert(`TODO: Build API to send request for series ID: ${this.props.id}`);
+    alert(`TODO: finish https://github.com/tomdaniels/plex-requests-api to handle: ${this.props.id}`);
   };
 
   getSeasonData = () => {
