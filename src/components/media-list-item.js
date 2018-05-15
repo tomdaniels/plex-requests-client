@@ -17,10 +17,8 @@ class MediaListItem extends React.Component {
   };
 
   onMovieRequestClick = () => {
-    const endpoint = `http://requests-api.tomd.io/v1/movie/${this.props.id}`;
-    axios.post(endpoint).then((response) => {
-      console.log(response);
-    }).catch((error) => console.log(error));
+    //TODO: make api to store tvID for sonarr PUT api call on local.
+    alert(`TODO: Build API to send request for movie ID: ${this.props.id}`);
   };
 
   onFullSeriesClick = () => {
