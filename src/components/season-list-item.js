@@ -7,7 +7,7 @@ const SeasonListItem = ({ id, date, name, epCount, seriesId }) => {
     const endpoint = `http://requests-api.tomd.io/v1/tv/${id}/season/${seriesId}`;
     axios.post(endpoint).then((response) => {
       if (response.status === 200) {
-        alert(`${title} successfully requested`);
+        alert(`${name} successfully requested`);
       }
     }).catch((error) => {
       console.log(error);
