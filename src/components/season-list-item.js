@@ -4,7 +4,6 @@ import axios from 'axios';
 const SeasonListItem = ({ id, date, name, epCount, seriesId }) => {
 
   const onClick = () => {
-    console.log('here');
     const endpoint = `http://requests-api.tomd.io/v1/tv/${id}/season/${seriesId}`;
     axios.post(endpoint).then((response) => {
       if (response.status === 200) {
