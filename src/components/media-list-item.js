@@ -29,8 +29,15 @@ class MediaListItem extends React.Component {
   };
 
   onFullSeriesClick = () => {
-    //TODO: make api to store tvID for sonarr PUT api call on local.
-    alert(`TODO: finish https://github.com/tomdaniels/plex-requests-api to handle: ${this.props.id}`);
+    const endpoint = `http://requests-api.tomd.io/v1/tv/${this.props.id}`;
+    axios.post(endpoint).then((response) => {
+      if (response.status === 200) {
+        alert(`${this.props.title} successfully requested`);
+      }
+    }).catch((error) => {
+      console.log(error);
+      alert(`oops! Call the tech guys.. something went wrong: ${error}`);
+    });
   };
 
   getSeasonData = () => {
