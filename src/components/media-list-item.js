@@ -3,28 +3,58 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import Modal from 'react-modal';
 import Seasons from './seasons-list';
+import Loading from './handle-loading';
 
 class MediaListItem extends React.Component {
-  state ={
+  state = {
+    isLoading: false,
     expandTvShow: false,
+    sucessful: false,
+    error: false,
     seasons: [],
   };
 
   toggleModal = () => {
     this.setState(() => ({
-      expandTvShow: !this.state.expandTvShow,
+      expandTvShow: false,
+    }));
+  };
+
+  closeLoadingModal = (stateProperty) => {
+    this.setState(() => ({
+      loading: false,
+    }));
+  };
+
+  closeSuccessModal = () => {
+    this.setState(() => ({
+      successful: false,
+    }));
+  };
+
+  closeErrorModal = () => {
+    this.setState(() => ({
+      error: false,
     }));
   };
 
   onMovieRequestClick = () => {
+    this.setState(() => ({
+      isLoading: true,
+    }));
     const endpoint = `http://requests-api.tomd.io/v1/movie/${this.props.id}`;
     axios.post(endpoint).then((response) => {
       if (response.status === 200) {
-        alert(`${this.props.title} successfully requested`);
+        this.setState(() => ({
+          isLoading: false,
+          successful: true,
+        }));
       }
     }).catch((error) => {
-      console.log(error);
-      alert(`oops! Call the tech guys.. something went wrong: ${error}`);
+      this.setState(() => ({
+        isLoading: false,
+        error: true,
+      }));
     });
   };
 
@@ -107,6 +137,33 @@ class MediaListItem extends React.Component {
                 Request Movie
               </button>
             )
+          }
+          {
+            this.state.isLoading &&
+            <Modal
+              isOpen={this.state.isLoading}
+              onRequestClose={this.closeLoadingModal}
+            >
+              <Loading />
+            </Modal>
+          }
+          {
+            this.state.successful &&
+            <Modal
+              isOpen={this.state.successful}
+              onRequestClose={this.closeSuccessModal}
+            >
+              <p>{`${this.props.title} was successfully requested`}</p>
+            </Modal>
+          }
+          {
+            this.state.error &&
+            <Modal
+              isOpen={this.state.error}
+              onRequestClose={this.closeErrorModal}
+            >
+              <p>{`Oops, something went wrong requesting ${this.props.title}.. Call the tech nerds!`}</p>
+            </Modal>
           }
         </div>
         {
