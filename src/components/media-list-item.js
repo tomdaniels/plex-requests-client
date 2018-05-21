@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import Modal from 'react-modal';
 import Seasons from './seasons-list';
-import Loading from './handle-loading';
 
 class MediaListItem extends React.Component {
   state = {
@@ -15,8 +14,10 @@ class MediaListItem extends React.Component {
   };
 
   toggleModal = () => {
-    this.setState(() => ({
-      expandTvShow: false,
+    this.setState((prevState) => ({
+      expandTvShow: !prevState.expandTvShow,
+      sucessful: false,
+      error: false,
     }));
   };
 
@@ -31,12 +32,14 @@ class MediaListItem extends React.Component {
           isLoading: false,
           successful: true,
         }));
+        alert(`${this.props.title} has successfully been requested`);
       }
     }).catch((error) => {
       this.setState(() => ({
         isLoading: false,
         error: true,
       }));
+      alert(`Oops... Call the tech guys! Something went wrong requesting ${this.props.title}`);
     });
   };
 
@@ -51,12 +54,14 @@ class MediaListItem extends React.Component {
           isLoading: false,
           successful: true,
         }));
+        alert(`${this.props.title} has successfully been requested`);
       }
     }).catch((error) => {
       this.setState(() => ({
         isLoading: false,
         error: true,
       }));
+      alert(`Oops... Call the tech guys! Something went wrong requesting ${this.props.title}`);
     });
   };
 
