@@ -1,8 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 
-//({ id, date, name, epCount, seriesId })
-
 class SeasonListItem extends React.Component {
   state = {
     isLoading: false,
