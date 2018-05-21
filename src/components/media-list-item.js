@@ -8,16 +8,12 @@ class MediaListItem extends React.Component {
   state = {
     isLoading: false,
     expandTvShow: false,
-    sucessful: false,
-    error: false,
     seasons: [],
   };
 
   toggleModal = () => {
     this.setState((prevState) => ({
       expandTvShow: !prevState.expandTvShow,
-      sucessful: false,
-      error: false,
     }));
   };
 
@@ -30,14 +26,12 @@ class MediaListItem extends React.Component {
       if (response.status === 200) {
         this.setState(() => ({
           isLoading: false,
-          successful: true,
         }));
         alert(`${this.props.title} has successfully been requested`);
       }
     }).catch((error) => {
       this.setState(() => ({
         isLoading: false,
-        error: true,
       }));
       alert(`Oops... Call the tech guys! Something went wrong requesting ${this.props.title}`);
     });
@@ -52,14 +46,12 @@ class MediaListItem extends React.Component {
       if (response.status === 200) {
         this.setState(() => ({
           isLoading: false,
-          successful: true,
         }));
         alert(`${this.props.title} has successfully been requested`);
       }
     }).catch((error) => {
       this.setState(() => ({
         isLoading: false,
-        error: true,
       }));
       alert(`Oops... Call the tech guys! Something went wrong requesting ${this.props.title}`);
     });
