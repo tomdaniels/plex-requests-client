@@ -59,6 +59,12 @@ class SearchPage extends React.Component {
     e.preventDefault();
     const input = e.target.value;
 
+    if (input.length >= 3) {
+      this.setState(() => ({
+        showList: true,
+      }));
+    }
+
     this.getTvMedia(input);
     this.getMovieMedia(input);
   };

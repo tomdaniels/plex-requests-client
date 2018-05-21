@@ -5,38 +5,55 @@ import Modal from 'react-modal';
 import Seasons from './seasons-list';
 
 class MediaListItem extends React.Component {
-  state ={
+  state = {
+    isLoading: false,
     expandTvShow: false,
     seasons: [],
   };
 
   toggleModal = () => {
-    this.setState(() => ({
-      expandTvShow: !this.state.expandTvShow,
+    this.setState((prevState) => ({
+      expandTvShow: !prevState.expandTvShow,
     }));
   };
 
   onMovieRequestClick = () => {
+    this.setState(() => ({
+      isLoading: true,
+    }));
     const endpoint = `http://requests-api.tomd.io/v1/movie/${this.props.id}`;
     axios.post(endpoint).then((response) => {
       if (response.status === 200) {
-        alert(`${this.props.title} successfully requested`);
+        this.setState(() => ({
+          isLoading: false,
+        }));
+        alert(`${this.props.title} has successfully been requested`);
       }
     }).catch((error) => {
-      console.log(error);
-      alert(`oops! Call the tech guys.. something went wrong: ${error}`);
+      this.setState(() => ({
+        isLoading: false,
+      }));
+      alert(`Oops... Call the tech guys! Something went wrong requesting ${this.props.title}`);
     });
   };
 
   onFullSeriesClick = () => {
+    this.setState(() => ({
+      isLoading: true,
+    }));
     const endpoint = `http://requests-api.tomd.io/v1/tv/${this.props.id}`;
     axios.post(endpoint).then((response) => {
       if (response.status === 200) {
-        alert(`${this.props.title} successfully requested`);
+        this.setState(() => ({
+          isLoading: false,
+        }));
+        alert(`${this.props.title} has successfully been requested`);
       }
     }).catch((error) => {
-      console.log(error);
-      alert(`oops! Call the tech guys.. something went wrong: ${error}`);
+      this.setState(() => ({
+        isLoading: false,
+      }));
+      alert(`Oops... Call the tech guys! Something went wrong requesting ${this.props.title}`);
     });
   };
 
@@ -90,7 +107,9 @@ class MediaListItem extends React.Component {
                   className="media-list__button"
                   onClick={this.onFullSeriesClick}
                 >
-                  Request Entire Series
+                {this.state.isLoading ? (
+                  <img class="media-list__loader" src="/images/loader.gif"/>
+                ) : 'Request Entire Series'}
                 </button>
                 <button
                   className="media-list__button"
@@ -104,7 +123,9 @@ class MediaListItem extends React.Component {
                 className="media-list__button"
                 onClick={this.onMovieRequestClick}
               >
-                Request Movie
+                {this.state.isLoading ? (
+                  <img class="media-list__loader" src="/images/loader.gif"/>
+                ) : 'Request Movie'}
               </button>
             )
           }
