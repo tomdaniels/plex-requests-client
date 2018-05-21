@@ -20,24 +20,6 @@ class MediaListItem extends React.Component {
     }));
   };
 
-  closeLoadingModal = (stateProperty) => {
-    this.setState(() => ({
-      loading: false,
-    }));
-  };
-
-  closeSuccessModal = () => {
-    this.setState(() => ({
-      successful: false,
-    }));
-  };
-
-  closeErrorModal = () => {
-    this.setState(() => ({
-      error: false,
-    }));
-  };
-
   onMovieRequestClick = () => {
     this.setState(() => ({
       isLoading: true,
@@ -59,14 +41,22 @@ class MediaListItem extends React.Component {
   };
 
   onFullSeriesClick = () => {
+    this.setState(() => ({
+      isLoading: true,
+    }));
     const endpoint = `http://requests-api.tomd.io/v1/tv/${this.props.id}`;
     axios.post(endpoint).then((response) => {
       if (response.status === 200) {
-        alert(`${this.props.title} successfully requested`);
+        this.setState(() => ({
+          isLoading: false,
+          successful: true,
+        }));
       }
     }).catch((error) => {
-      console.log(error);
-      alert(`oops! Call the tech guys.. something went wrong: ${error}`);
+      this.setState(() => ({
+        isLoading: false,
+        error: true,
+      }));
     });
   };
 
@@ -120,7 +110,9 @@ class MediaListItem extends React.Component {
                   className="media-list__button"
                   onClick={this.onFullSeriesClick}
                 >
-                  Request Entire Series
+                {this.state.isLoading ? (
+                  <img class="media-list__loader" src="/images/loader.gif"/>
+                ) : 'Request Entire Series'}
                 </button>
                 <button
                   className="media-list__button"
@@ -134,36 +126,11 @@ class MediaListItem extends React.Component {
                 className="media-list__button"
                 onClick={this.onMovieRequestClick}
               >
-                Request Movie
+                {this.state.isLoading ? (
+                  <img class="media-list__loader" src="/images/loader.gif"/>
+                ) : 'Request Movie'}
               </button>
             )
-          }
-          {
-            this.state.isLoading &&
-            <Modal
-              isOpen={this.state.isLoading}
-              onRequestClose={this.closeLoadingModal}
-            >
-              <Loading />
-            </Modal>
-          }
-          {
-            this.state.successful &&
-            <Modal
-              isOpen={this.state.successful}
-              onRequestClose={this.closeSuccessModal}
-            >
-              <p>{`${this.props.title} was successfully requested`}</p>
-            </Modal>
-          }
-          {
-            this.state.error &&
-            <Modal
-              isOpen={this.state.error}
-              onRequestClose={this.closeErrorModal}
-            >
-              <p>{`Oops, something went wrong requesting ${this.props.title}.. Call the tech nerds!`}</p>
-            </Modal>
           }
         </div>
         {
