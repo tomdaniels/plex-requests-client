@@ -41,7 +41,7 @@ class SeasonListItem extends React.Component {
           className="season-list-item__request-button"
         >
         {this.state.isLoading ? (
-          <img class="media-list__loader" src="/images/loader.gif"/>
+          <img className="media-list__loader" src="/images/loader.gif"/>
         ) : 'Request Season'}
         </button>
       </div>
