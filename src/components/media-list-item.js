@@ -26,7 +26,7 @@ class MediaListItem extends React.Component {
     const endpoint = this.props.source === 'movie' ? (
       `http://requests-api.tomd.io/v1/movie/${this.props.id}`
     ) : (
-      `http://requests-api.tomd.io/v1/movie/${this.props.id}`
+      `http://requests-api.tomd.io/v1/tv/${this.props.id}`
     );
 
     axios.post(endpoint).then((response) => {
