@@ -9,7 +9,7 @@ const Header = ({title}) => (
               className="plex-requests__header-img"
               src="/images/play-symbol.png"
               alt="Plex Requests for tomd.io" />
-          <p className="plex-requests__header-item">{title}</p>
+            <a className="plex-requests__header-title" href="http://requests.tomd.io">{title}</a>
         </div>
       </div>
     </header>
