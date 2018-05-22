@@ -71,6 +71,8 @@
 }
 
 .media-list__button-wrap {
+  display: flex;
+  justify-content: flex-end;
   text-align: right;
 }
 
