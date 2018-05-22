@@ -59,9 +59,13 @@ class SearchPage extends React.Component {
     e.preventDefault();
     const input = e.target.value;
 
-    if (input.length >= 3) {
+    if (input.length >= 4) {
       this.setState(() => ({
         showList: true,
+      }));
+    } else {
+      this.setState(() => ({
+        showList: false,
       }));
     }
 
