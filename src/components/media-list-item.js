@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import Modal from 'react-modal';
 import Seasons from './seasons-list';
+import Button from './request-button';
 
 class MediaListItem extends React.Component {
   state = {
@@ -17,31 +18,17 @@ class MediaListItem extends React.Component {
     }));
   };
 
-  onMovieRequestClick = () => {
+  onMediaRequest = (source) => {
     this.setState(() => ({
       isLoading: true,
     }));
-    const endpoint = `http://requests-api.tomd.io/v1/movie/${this.props.id}`;
-    axios.post(endpoint).then((response) => {
-      if (response.status === 200) {
-        this.setState(() => ({
-          isLoading: false,
-        }));
-        alert(`${this.props.title} has successfully been requested`);
-      }
-    }).catch((error) => {
-      this.setState(() => ({
-        isLoading: false,
-      }));
-      alert(`Oops... Call the tech guys! Something went wrong requesting ${this.props.title}`);
-    });
-  };
 
-  onFullSeriesClick = () => {
-    this.setState(() => ({
-      isLoading: true,
-    }));
-    const endpoint = `http://requests-api.tomd.io/v1/tv/${this.props.id}`;
+    const endpoint = this.props.source === 'movie' ? (
+      `http://requests-api.tomd.io/v1/movie/${this.props.id}`
+    ) : (
+      `http://requests-api.tomd.io/v1/movie/${this.props.id}`
+    );
+
     axios.post(endpoint).then((response) => {
       if (response.status === 200) {
         this.setState(() => ({
@@ -55,7 +42,7 @@ class MediaListItem extends React.Component {
       }));
       alert(`Oops... Call the tech guys! Something went wrong requesting ${this.props.title}`);
     });
-  };
+  }
 
   getSeasonData = () => {
     const endpoint = `https://api.themoviedb.org/3/tv/${this.props.id}?api_key=${this.props.apiKey}`;
@@ -100,35 +87,20 @@ class MediaListItem extends React.Component {
           </p>
         </div>
         <div className="media-list__button-wrap">
-          {
-            this.props.source === 'tv' ? (
-              <div>
-                <button
-                  className="media-list__button"
-                  onClick={this.onFullSeriesClick}
-                >
-                {this.state.isLoading ? (
-                  <img className="media-list__loader" src="/images/loader.gif"/>
-                ) : 'Request Entire Series'}
-                </button>
-                <button
+          <Button
+            isLoading={this.state.isLoading}
+            source={this.props.source}
+            onClick={this.onMediaRequest}
+          />
+        {
+          this.props.source === 'tv' &&
+            <button
                   className="media-list__button"
                   onClick={this.toggleModal}
                 >
                   +
-                </button>
-              </div>
-            ) : (
-              <button
-                className="media-list__button"
-                onClick={this.onMovieRequestClick}
-              >
-                {this.state.isLoading ? (
-                  <img className="media-list__loader" src="/images/loader.gif"/>
-                ) : 'Request Movie'}
-              </button>
-            )
-          }
+            </button>
+        }
         </div>
         {
           this.state.expandTvShow &&
