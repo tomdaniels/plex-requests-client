@@ -108,7 +108,7 @@ class MediaListItem extends React.Component {
                   onClick={this.onFullSeriesClick}
                 >
                 {this.state.isLoading ? (
-                  <img class="media-list__loader" src="/images/loader.gif"/>
+                  <img className="media-list__loader" src="/images/loader.gif"/>
                 ) : 'Request Entire Series'}
                 </button>
                 <button
@@ -124,7 +124,7 @@ class MediaListItem extends React.Component {
                 onClick={this.onMovieRequestClick}
               >
                 {this.state.isLoading ? (
-                  <img class="media-list__loader" src="/images/loader.gif"/>
+                  <img className="media-list__loader" src="/images/loader.gif"/>
                 ) : 'Request Movie'}
               </button>
             )
