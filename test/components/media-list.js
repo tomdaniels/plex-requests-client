@@ -5,7 +5,16 @@ const shallow = enzyme.shallow;
 let wrapper;
 
 beforeEach(() => {
-  const media = ['item 1', 'item 2', 'item 3'];
+  const media = [{
+    name: 'simpsons',
+    source: 'tv'
+  }, {
+    name: 'futurama',
+    source: 'tv'
+  }, {
+    name: 'garfield',
+    source: 'movie',
+  }];
   wrapper = shallow(<MediaList media={media} />);
 });
 

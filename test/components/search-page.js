@@ -5,7 +5,7 @@ const shallow = enzyme.shallow;
 let wrapper;
 
 beforeEach(() => {
-  wrapper = shallow(<SearchPage />);
+  wrapper = shallow(<SearchPage apiKey="9c5d6b4947c4158889089d104d6ad8b8" />);
 });
 
 describe('search-page.js', () => {
@@ -31,8 +31,7 @@ describe('search-page.js', () => {
   });
   it('should receive an API key as props', () => {
     const apiKey = '9c5d6b4947c4158889089d104d6ad8b8';
-    const component = shallow(<SearchPage apiKey={apiKey} />);
-    expect(component.instance().props.apiKey).to.equal(apiKey);
+    expect(wrapper.instance().props.apiKey).to.equal(apiKey);
   });
   it('doesn\'t render the media list component if when showList !== true', () => {
     expect(wrapper.find('MediaList')).to.not.be.present();
