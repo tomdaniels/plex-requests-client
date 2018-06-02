@@ -9,8 +9,9 @@ class SearchPage extends React.Component {
     showList: false,
   };
 
-  getTvMedia(input) {
+  getMedia(input) {
     const encodedInput = input.includes(' ') ? input.replace(' ', '+') : input;
+    const movieEndpoint = `https://api.themoviedb.org/3/search/movie?api_key=${this.props.apiKey}&query=${encodedInput}&sort_by=popularity`;
     const tvEndpoint = `https://api.themoviedb.org/3/search/tv?api_key=${this.props.apiKey}&query=${encodedInput}&sort_by=popularity`;
 
     axios.get(tvEndpoint).then((res) => {
@@ -29,13 +30,7 @@ class SearchPage extends React.Component {
         media,
       }));
     }
-  }).catch((err) => console.log(err));
-  };
-
-  getMovieMedia(input) {
-    const encodedInput = input.includes(' ') ? input.replace(' ', '+') : input;
-    const movieEndpoint = `https://api.themoviedb.org/3/search/movie?api_key=${this.props.apiKey}&query=${encodedInput}&sort_by=popularity`;
-
+  }).then(() => {
     axios.get(movieEndpoint).then((response) => {
       if (response.status === 200) {
         const results = response.data.results;
@@ -52,7 +47,8 @@ class SearchPage extends React.Component {
           media: prevState.media.concat(movies),
         }));
       }
-    }).catch((error) => console.log(error));
+    }).catch((err) => console.log(err));
+  });
   }
 
   handleChange = (e) => {
@@ -69,8 +65,7 @@ class SearchPage extends React.Component {
       }));
     }
 
-    this.getTvMedia(input);
-    this.getMovieMedia(input);
+    this.getMedia(input);
   };
 
   clearList = () => {
