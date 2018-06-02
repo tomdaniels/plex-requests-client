@@ -30,9 +30,9 @@ class SeasonListItem extends React.Component {
     return (
       <div className="season-list-item__wrapper">
         <div className="season-list-item___headlines">
-          <div>{this.props.name}</div>
-          <div>{this.props.date}</div>
-          <div>
+          <div className="season-list-item__title">{this.props.name}</div>
+          <div className="season-list-date">{this.props.date}</div>
+          <div className="season-list-ep-count">
             {this.props.epCount === 1 ? '1 episode' : `${this.props.epCount} episodes`}
           </div>
         </div>
