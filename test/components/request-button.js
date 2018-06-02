@@ -15,7 +15,10 @@ describe('request-button.js', () => {
     expect(wrapper.find('.media-list__button')).to.be.present();
   });
   it('picks the right text for either TV Series or Movies', () => {
-    const component = shallow(<RequestButton source="tv" />);
-    expect(component.find('.media-list__button')).to.have.text('Request Entire Series');
+    const tvText = shallow(<RequestButton source="tv" />);
+    expect(tvText.find('.media-list__button')).to.have.text('Request Entire Series');
+
+    const movieText = shallow(<RequestButton source="movie" />);
+    expect(movieText.find('.media-list__button')).to.have.text('Request Movie');
   });
 });
