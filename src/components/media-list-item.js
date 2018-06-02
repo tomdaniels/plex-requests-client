@@ -81,8 +81,7 @@ class MediaListItem extends React.Component {
           }
           <p>
             {
-              this.props.desc || `Sorry, there is no description available for this
-              ${this.props.source === 'tv' ? 'series' : 'movie'}. `
+              this.props.desc || `Sorry, there is no description available for this ${this.props.source === 'tv' ? 'series' : 'movie'}.`
             }
           </p>
         </div>
