@@ -8,7 +8,7 @@ beforeEach(() => {
   wrapper = shallow(<Header title="Plex Requests" />);
 });
 
-describe('Header.js', () => {
+describe('header.js', () => {
   it('should render the header section', () => {
     expect(wrapper.find('.plex-requests__header-wrap')).to.be.present();
   });

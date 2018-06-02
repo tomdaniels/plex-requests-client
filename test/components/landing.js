@@ -8,7 +8,7 @@ beforeEach(() => {
   wrapper = shallow(<Landing />);
 });
 
-describe('Landing.js', () => {
+describe('landing.js', () => {
   it('should render the header the component', () => {
     expect(wrapper.find('Header')).to.be.present();
   });
