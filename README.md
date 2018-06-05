@@ -7,6 +7,7 @@ Online interface for users to requests new shows to a Plex server.
 - integrated homemade [API](https://github.com/tomdaniels/plex-requests-client) to store requested media ID's
 - hosted on AWS (Route 53/S3)
 - Firebase DB
+- Mocha, Chai & Enzyme test suite
 
 #### TODO
 
