@@ -1,5 +1,7 @@
 # plex-requests-client
 
+![Plex Requests Site](/docs/screenshot.png?raw=true "Plex Requests Site")
+
 ### [requests.tomd.io](requests.tomd.io)
 
 This website is to help the users on my Plex server to request their own media.
