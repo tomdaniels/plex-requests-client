@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Button = ({ source, isLoading, onClick }) => {
+const Button = ({ source, isLoading, onClick, requested }) => {
 
   const title = source === 'tv' ? 'Request Entire Series' : 'Request Movie';
 
@@ -14,7 +14,7 @@ const Button = ({ source, isLoading, onClick }) => {
           isLoading ? (
             <img className="media-list__loader" src="/images/loader.gif" />
           ) : (
-            title
+            requested ? 'Successfully Requested' : title
           )
         }
       </button>
