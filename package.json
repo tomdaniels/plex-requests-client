@@ -8,6 +8,7 @@
   "scripts": {
     "start": "node server/server.js",
     "heroku-postbuild": "yarn run build:prod",
+    "deploy": "git push heroku master",
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server",
