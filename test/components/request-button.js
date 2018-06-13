@@ -20,5 +20,8 @@ describe('request-button.js', () => {
 
     const movieText = shallow(<RequestButton source="movie" />);
     expect(movieText.find('.media-list__button')).to.have.text('Request Movie');
+
+    const requestText = shallow(<RequestButton requested />);
+    expect(requestText.find('.media-list__button')).to.have.text('Successfully Requested');
   });
 });
