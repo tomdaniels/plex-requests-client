@@ -10,6 +10,7 @@ class MediaListItem extends React.Component {
     isLoading: false,
     expandTvShow: false,
     seasons: [],
+    requested: false,
   };
 
   toggleModal = () => {
@@ -36,6 +37,10 @@ class MediaListItem extends React.Component {
         }));
         alert(`${this.props.title} has successfully been requested`);
       }
+    }).then(() => {
+      this.setState(() => ({
+        requested: true,
+      }));
     }).catch((error) => {
       this.setState(() => ({
         isLoading: false,
@@ -90,6 +95,7 @@ class MediaListItem extends React.Component {
             isLoading={this.state.isLoading}
             source={this.props.source}
             onClick={this.onMediaRequest}
+            requested={this.state.requested}
           />
         {
           this.props.source === 'tv' &&
