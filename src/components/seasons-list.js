@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SeasonListItem from './season-list-item';
 
 const Seasons = ({ title, seasons }) => {
@@ -23,6 +24,11 @@ const Seasons = ({ title, seasons }) => {
       </ul>
     </div>
   )
+};
+
+Seasons.propTypes = {
+  title: PropTypes.string.isRequired,
+  seasons: PropTypes.array.isRequired,
 };
 
 export default Seasons;

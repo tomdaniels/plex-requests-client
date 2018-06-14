@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Button = ({ source, isLoading, onClick, requested }) => {
 
@@ -21,5 +22,18 @@ const Button = ({ source, isLoading, onClick, requested }) => {
     </div>
   )
 }
+
+Button.propTypes = {
+  source: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool,
+  onClick: PropTypes.func,
+  requested: PropTypes.bool,
+};
+
+Button.defaultProps = {
+  isLoading: false,
+  onClick: () => {},
+  requested: false,
+};
 
 export default Button;

@@ -28,6 +28,7 @@ const MediaList = ({ media, apiKey }) => {
 
 MediaList.propTypes = {
   media: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))),
+  apiKey: PropTypes.string.isRequired,
 };
 
 MediaList.defaultProps = {
