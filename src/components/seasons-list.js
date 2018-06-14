@@ -28,13 +28,7 @@ const Seasons = ({ title, seasons }) => {
 
 Seasons.propTypes = {
   title: PropTypes.string.isRequired,
-  seasons: PropTypes.shape({
-    id: PropTypes.string,
-    date: PropTypes.string,
-    epCount: PropTypes.number,
-    name: PropTypes.string,
-    seriesId: PropTypes.string,
-  }).isRequired,
+  seasons: PropTypes.array.isRequired,
 };
 
 export default Seasons;
