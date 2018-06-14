@@ -8,6 +8,7 @@
 
 # auto-generated code
 public/dist/
+.nyc_output/
 
 # env variables
 .env.test
