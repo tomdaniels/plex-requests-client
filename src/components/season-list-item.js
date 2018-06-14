@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 class SeasonListItem extends React.Component {
@@ -48,5 +49,14 @@ class SeasonListItem extends React.Component {
     )
   }
 }
+
+SeasonListItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  date: PropTypes.string.isRequired,
+  epCount: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  seriesId: PropTypes.number.isRequired,
+};
+
 
 export default SeasonListItem;
