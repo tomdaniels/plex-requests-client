@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Button = ({ mediaId, source, isLoading, onClick, requested }) => {
+const Button = ({ mediaId, mediaName, source, isLoading, onClick, requested }) => {
 
   const title = source === 'tv' ? 'Request Entire Series' : 'Request Movie';
-  const inStorage = localStorage.getItem(`${showName}`);
-  const rightContext = inStorage == mediaId;
-  const alreadyRequested = instorage && rightContext;
+  const inStorage = localStorage.getItem(`${mediaId}`);
+  const rightContext = inStorage == mediaName;
+  const alreadyRequested = inStorage && rightContext;
 
   return (
     <div>
