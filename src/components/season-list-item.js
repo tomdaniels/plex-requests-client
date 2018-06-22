@@ -17,6 +17,7 @@ class SeasonListItem extends React.Component {
         this.setState(() => ({
           isLoading: false,
         }));
+        localStorage.setItem(`${this.props.name}, ${this.props.seriesId}`)
         alert(`${this.props.name} successfully requested`);
       }
     }).catch((error) => {
@@ -28,6 +29,11 @@ class SeasonListItem extends React.Component {
   }
 
   render() {
+    const inStorage = localStorage.getItem(`${this.props.name}`);
+    const rightContext = inStorage == this.props.seriesId;
+    const alreadyRequested =  inStorage && rightContext;
+    const buttonTitle = alreadyRequested ? 'Successfully requested' : 'Request Season';
+
     return (
       <div className="season-list-item__wrapper">
         <div className="season-list-item___headlines">
@@ -43,7 +49,7 @@ class SeasonListItem extends React.Component {
         >
         {this.state.isLoading ? (
           <img className="media-list__loader" src="/images/loader.gif"/>
-        ) : 'Request Season'}
+        ) : buttonTitle}
         </button>
       </div>
     )

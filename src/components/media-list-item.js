@@ -41,6 +41,7 @@ class MediaListItem extends React.Component {
       this.setState(() => ({
         requested: true,
       }));
+      localStorage.setItem(`${this.props.id}`, `${this.props.title}`);
     }).catch((error) => {
       this.setState(() => ({
         isLoading: false,
@@ -92,6 +93,7 @@ class MediaListItem extends React.Component {
         </div>
         <div className="media-list__button-wrap">
           <Button
+            mediaName={this.props.title}
             isLoading={this.state.isLoading}
             source={this.props.source}
             onClick={this.onMediaRequest}
