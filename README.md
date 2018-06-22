@@ -1,6 +1,6 @@
 # plex-requests-client
 
-![Plex Requests Site](/docs/screenshot.png?raw=true "Plex Requests Site")
+![Plex Requests Site](/docs/screenshotGIF.gif "Plex Requests Site")
 
 ### [requests.tomd.io](requests.tomd.io)
 
