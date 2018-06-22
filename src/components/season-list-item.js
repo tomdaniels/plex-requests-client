@@ -17,8 +17,8 @@ class SeasonListItem extends React.Component {
         this.setState(() => ({
           isLoading: false,
         }));
-        localStorage.setItem(`${this.props.name}, ${this.props.seriesId}`)
         alert(`${this.props.name} successfully requested`);
+        localStorage.setItem(`${this.props.name}, ${this.props.seriesId}`)
       }
     }).catch((error) => {
       this.setState(() => ({
