@@ -18,7 +18,7 @@ const Button = ({ mediaId, mediaName, source, isLoading, onClick, requested }) =
           isLoading ? (
             <img className="media-list__loader" src="/images/loader.gif" />
           ) : (
-            alreadyRequested ? 'Successfully Requested' : title
+            alreadyRequested || requested ? 'Successfully Requested' : title
           )
         }
       </button>
