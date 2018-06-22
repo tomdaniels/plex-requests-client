@@ -28,7 +28,8 @@ const MediaList = ({ media, apiKey }) => {
 
 MediaList.propTypes = {
   apiKey: PropTypes.string.isRequired,
-  media: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.oneOfType([
+  media: PropTypes.arrayOf(PropTypes.objectOf(
+    PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number
       ])))
