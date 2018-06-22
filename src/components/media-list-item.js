@@ -93,6 +93,7 @@ class MediaListItem extends React.Component {
         </div>
         <div className="media-list__button-wrap">
           <Button
+            mediaId={this.props.id}
             mediaName={this.props.title}
             isLoading={this.state.isLoading}
             source={this.props.source}
