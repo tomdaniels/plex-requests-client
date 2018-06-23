@@ -6,7 +6,7 @@ let wrapper;
 
 beforeEach(() => {
   const season = {
-    name: 'simpsons',
+    seasonNumber: 'simpsons',
     epCount: 127,
     date: '01/01/2000'
   };
@@ -17,7 +17,7 @@ describe('season-list-item.js', () => {
   it('should render the component', () => {
     expect(wrapper.find('.season-list-item__wrapper')).to.be.present();
   });
-  it('should use the show name as the component title', () => {
+  it('should use the season number as the component title', () => {
     expect(wrapper.find('.season-list-item__title')).to.have.text('simpsons');
   });
   it('should show how many episodes are in each seasons', () => {

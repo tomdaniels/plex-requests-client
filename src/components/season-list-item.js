@@ -9,17 +9,21 @@ class SeasonListItem extends React.Component {
   };
 
   onClick = () => {
+    const endpointShowName = this.props.title.toLowerCase().split(' ').join('-').replace('\'', '');
+    const endpointSeasonNumber = this.props.seasonNumber.toLowerCase().split(' ').join('-');
+
     this.setState(() => ({
       isLoading: true,
     }));
-    const endpoint = `http://requests-api.tomd.io/v1/tv/${this.props.id}/season/${this.props.seriesId}`;
+    const endpoint = `http://requests-api.tomd.io/v1/tv/${endpointShowName}/season/${endpointSeasonNumber}`;
+    console.log(endpoint);
     axios.post(endpoint).then((response) => {
       if (response.status === 200) {
         this.setState(() => ({
           isLoading: false,
           requested: true,
         }));
-        localStorage.setItem(`${this.props.name}`, `${this.props.seriesId}`);
+        localStorage.setItem(`${this.props.seasonNumber}`, `${this.props.seriesId}`);
       }
     }).catch((error) => {
       this.setState(() => ({
@@ -30,7 +34,7 @@ class SeasonListItem extends React.Component {
   }
 
   render() {
-    const inStorage = localStorage.getItem(`${this.props.name}`);
+    const inStorage = localStorage.getItem(`${this.props.seasonNumber}`);
     const rightContext = inStorage == this.props.seriesId;
     const alreadyRequested =  inStorage && rightContext;
     const buttonTitle = alreadyRequested || this.state.requested ? 'Successfully requested' : 'Request Season';
@@ -38,7 +42,7 @@ class SeasonListItem extends React.Component {
     return (
       <div className="season-list-item__wrapper">
         <div className="season-list-item___headlines">
-          <div className="season-list-item__title">{this.props.name}</div>
+          <div className="season-list-item__title">{this.props.seasonNumber}</div>
           <div className="season-list-date">{this.props.date}</div>
           <div className="season-list-ep-count">
             {this.props.epCount === 1 ? '1 episode' : `${this.props.epCount} episodes`}
@@ -59,10 +63,11 @@ class SeasonListItem extends React.Component {
 }
 
 SeasonListItem.propTypes = {
+  title: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   date: PropTypes.string.isRequired,
   epCount: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
+  seasonNumber: PropTypes.string.isRequired,
   seriesId: PropTypes.number.isRequired,
 };
 

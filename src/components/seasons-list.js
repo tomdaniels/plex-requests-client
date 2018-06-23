@@ -15,7 +15,7 @@ const Seasons = ({ title, seasons }) => {
         {
           seasonsList.length > 0 ? (seasons.map((season) => (
             <li key={season.id} className="plex-requests__seasons-list">
-              <SeasonListItem {...season} />
+              <SeasonListItem title={title} {...season} />
             </li>
           ))) : (
             'No results found..'

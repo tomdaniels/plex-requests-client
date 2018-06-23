@@ -59,7 +59,7 @@ class MediaListItem extends React.Component {
           id: result.id,
           date: result.air_date,
           epCount: result.episode_count,
-          name: result.name,
+          seasonNumber: result.name,
           seriesId: this.props.id,
         }));
         this.setState(() => ({
