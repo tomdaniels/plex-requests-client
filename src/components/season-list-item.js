@@ -5,6 +5,7 @@ import axios from 'axios';
 class SeasonListItem extends React.Component {
   state = {
     isLoading: false,
+    requested: false,
   };
 
   onClick = () => {
@@ -16,6 +17,7 @@ class SeasonListItem extends React.Component {
       if (response.status === 200) {
         this.setState(() => ({
           isLoading: false,
+          requested: true,
         }));
         alert(`${this.props.name} successfully requested`);
         localStorage.setItem(`${this.props.name}`, `${this.props.seriesId}`);
@@ -32,7 +34,7 @@ class SeasonListItem extends React.Component {
     const inStorage = localStorage.getItem(`${this.props.name}`);
     const rightContext = inStorage == this.props.seriesId;
     const alreadyRequested =  inStorage && rightContext;
-    const buttonTitle = alreadyRequested ? 'Successfully requested' : 'Request Season';
+    const buttonTitle = alreadyRequested || this.state.requested ? 'Successfully requested' : 'Request Season';
 
     return (
       <div className="season-list-item__wrapper">
