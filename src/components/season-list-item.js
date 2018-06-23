@@ -19,7 +19,6 @@ class SeasonListItem extends React.Component {
           isLoading: false,
           requested: true,
         }));
-        alert(`${this.props.name} successfully requested`);
         localStorage.setItem(`${this.props.name}`, `${this.props.seriesId}`);
       }
     }).catch((error) => {
@@ -47,6 +46,7 @@ class SeasonListItem extends React.Component {
         </div>
         <button
           onClick={this.onClick}
+          disabled={alreadyRequested || this.state.requested}
           className="season-list-item__request-button"
         >
         {this.state.isLoading ? (

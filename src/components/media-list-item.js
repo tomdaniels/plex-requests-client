@@ -35,7 +35,6 @@ class MediaListItem extends React.Component {
         this.setState(() => ({
           isLoading: false,
         }));
-        alert(`${this.props.title} has successfully been requested`);
       }
     }).then(() => {
       this.setState(() => ({
