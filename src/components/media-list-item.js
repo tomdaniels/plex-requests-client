@@ -20,15 +20,16 @@ class MediaListItem extends React.Component {
   };
 
   onMediaRequest = (source) => {
+    const endpointTitle = this.props.title.toLowerCase().split(' ').join('-').replace('\'', '').replace('.', '').replace(':', '');
+    const endpoint = this.props.source === 'movie' ? (
+      `http://requests-api.tomd.io/v1/movie/${endpointTitle}`
+    ) : (
+      `http://requests-api.tomd.io/v1/tv/${endpointTitle}`
+    );
+
     this.setState(() => ({
       isLoading: true,
     }));
-
-    const endpoint = this.props.source === 'movie' ? (
-      `http://requests-api.tomd.io/v1/movie/${this.props.id}`
-    ) : (
-      `http://requests-api.tomd.io/v1/tv/${this.props.id}`
-    );
 
     axios.post(endpoint).then((response) => {
       if (response.status === 200) {
@@ -59,7 +60,7 @@ class MediaListItem extends React.Component {
           id: result.id,
           date: result.air_date,
           epCount: result.episode_count,
-          name: result.name,
+          seasonNumber: result.name,
           seriesId: this.props.id,
         }));
         this.setState(() => ({
