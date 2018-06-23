@@ -20,7 +20,7 @@ class MediaListItem extends React.Component {
   };
 
   onMediaRequest = (source) => {
-    const endpointTitle = this.props.title.toLowerCase().split(' ').join('-').replace('\'', '').replace('.', '');
+    const endpointTitle = this.props.title.toLowerCase().split(' ').join('-').replace('\'', '').replace('.', '').replace(':', '');
     const endpoint = this.props.source === 'movie' ? (
       `http://requests-api.tomd.io/v1/movie/${endpointTitle}`
     ) : (
