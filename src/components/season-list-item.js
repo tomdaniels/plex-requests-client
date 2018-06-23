@@ -19,7 +19,7 @@ class SeasonListItem extends React.Component {
           isLoading: false,
           requested: true,
         }));
-        window.localStorage.setItem(`${this.props.name}`, `${this.props.seriesId}`);
+        localStorage.setItem(`${this.props.name}`, `${this.props.seriesId}`);
       }
     }).catch((error) => {
       this.setState(() => ({
@@ -30,7 +30,7 @@ class SeasonListItem extends React.Component {
   }
 
   render() {
-    const inStorage = window.localStorage.getItem(`${this.props.name}`);
+    const inStorage = localStorage.getItem(`${this.props.name}`);
     const rightContext = inStorage == this.props.seriesId;
     const alreadyRequested =  inStorage && rightContext;
     const buttonTitle = alreadyRequested || this.state.requested ? 'Successfully requested' : 'Request Season';

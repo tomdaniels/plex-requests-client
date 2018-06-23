@@ -40,7 +40,7 @@ class MediaListItem extends React.Component {
       this.setState(() => ({
         requested: true,
       }));
-      window.localStorage.setItem(`${this.props.id}`, `${this.props.title}`);
+      localStorage.setItem(`${this.props.id}`, `${this.props.title}`);
     }).catch((error) => {
       this.setState(() => ({
         isLoading: false,
