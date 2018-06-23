@@ -20,18 +20,17 @@ class MediaListItem extends React.Component {
   };
 
   onMediaRequest = (source) => {
-    const endpointTitle = this.props.title.toLowerCase().split(' ').join('-').replace('\'', '');
-
-    this.setState(() => ({
-      isLoading: true,
-    }));
-
+    const endpointTitle = this.props.title.toLowerCase().split(' ').join('-').replace('\'', '').replace('.', '');
     const endpoint = this.props.source === 'movie' ? (
       `http://requests-api.tomd.io/v1/movie/${endpointTitle}`
     ) : (
       `http://requests-api.tomd.io/v1/tv/${endpointTitle}`
     );
-    console.log(endpoint);
+
+    this.setState(() => ({
+      isLoading: true,
+    }));
+
     axios.post(endpoint).then((response) => {
       if (response.status === 200) {
         this.setState(() => ({

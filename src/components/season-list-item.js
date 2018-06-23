@@ -9,14 +9,14 @@ class SeasonListItem extends React.Component {
   };
 
   onClick = () => {
-    const endpointShowName = this.props.title.toLowerCase().split(' ').join('-').replace('\'', '');
+    const endpointShowName = this.props.title.toLowerCase().split(' ').join('-').replace('\'', '').replace('.', '');
     const endpointSeasonNumber = this.props.seasonNumber.toLowerCase().split(' ').join('-');
 
     this.setState(() => ({
       isLoading: true,
     }));
     const endpoint = `http://requests-api.tomd.io/v1/tv/${endpointShowName}/season/${endpointSeasonNumber}`;
-    console.log(endpoint);
+
     axios.post(endpoint).then((response) => {
       if (response.status === 200) {
         this.setState(() => ({
