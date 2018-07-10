@@ -16,7 +16,7 @@ describe('search-page.js', () => {
     expect(wrapper.find('.search-page__section-header')).to.have.text('Search');
   });
   it('should have a sub-heading', () => {
-    const subheading = 'Want to watch something that\'s not on Plex? Let\'s sort that out...'
+    const subheading = 'Wanna see something that\'s not on my Plex? Sort that out below...'
     expect(wrapper.find('.search-page__sub-header')).to.have.text(subheading);
   });
   it('should render a text search for media', () => {
