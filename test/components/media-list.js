@@ -15,7 +15,7 @@ beforeEach(() => {
     name: 'garfield',
     source: 'movie',
   }];
-  wrapper = shallow(<MediaList media={media} />);
+  wrapper = shallow(<MediaList media={media} apiKey="some-key" />);
 });
 
 describe('media-list.js', () => {
