@@ -7,7 +7,13 @@ let wrapper;
 const onClick = () => '';
 
 beforeEach(() => {
-  wrapper = shallow(<RequestButton onClick={onClick} />);
+  wrapper = shallow(
+    <RequestButton
+      onClick={onClick}
+      source="tv"
+      mediaName="simpsons"
+      />
+    );
 });
 
 describe('request-button.js', () => {
@@ -21,7 +27,7 @@ describe('request-button.js', () => {
     const movieText = shallow(<RequestButton source="movie" />);
     expect(movieText.find('.media-list__button')).to.have.text('Request Movie');
 
-    const requestText = shallow(<RequestButton requested />);
+    const requestText = shallow(<RequestButton source="tv" requested />);
     expect(requestText.find('.media-list__button')).to.have.text('Successfully Requested');
   });
 });
