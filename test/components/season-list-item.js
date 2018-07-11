@@ -4,9 +4,18 @@ const shallow = enzyme.shallow;
 
 let wrapper;
 
+// title: PropTypes.string.isRequired,
+// id: PropTypes.number.isRequired,
+// date: PropTypes.string.isRequired,
+// epCount: PropTypes.number.isRequired,
+// seasonNumber: PropTypes.string.isRequired,
+// seriesId: PropTypes.number.isRequired,
+
 beforeEach(() => {
   const season = {
-    seasonNumber: 'simpsons',
+    title: 'simpsons',
+    id: 123,
+    seasonNumber: 'season 27',
     epCount: 127,
     date: '01/01/2000'
   };
@@ -18,7 +27,7 @@ describe('season-list-item.js', () => {
     expect(wrapper.find('.season-list-item__wrapper')).to.be.present();
   });
   it('should use the season number as the component title', () => {
-    expect(wrapper.find('.season-list-item__title')).to.have.text('simpsons');
+    expect(wrapper.find('.season-list-item__title')).to.have.text('season 27');
   });
   it('should show how many episodes are in each seasons', () => {
     expect(wrapper.find('.season-list-ep-count')).to.have.text('127 episodes');
