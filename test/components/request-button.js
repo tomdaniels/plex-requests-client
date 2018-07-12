@@ -7,7 +7,13 @@ let wrapper;
 const onClick = () => '';
 
 beforeEach(() => {
-  wrapper = shallow(<RequestButton onClick={onClick} />);
+  wrapper = shallow(
+    <RequestButton
+      onClick={onClick}
+      source="tv"
+      mediaName="simpsons"
+      />
+    );
 });
 
 describe('request-button.js', () => {
@@ -15,13 +21,13 @@ describe('request-button.js', () => {
     expect(wrapper.find('.media-list__button')).to.be.present();
   });
   it('picks the right text for either TV Series or Movies', () => {
-    const tvText = shallow(<RequestButton source="tv" />);
+    const tvText = shallow(<RequestButton source="tv" mediaName="simpsons" />);
     expect(tvText.find('.media-list__button')).to.have.text('Request Entire Series');
 
-    const movieText = shallow(<RequestButton source="movie" />);
+    const movieText = shallow(<RequestButton source="movie" mediaName="the simpsons movie" />);
     expect(movieText.find('.media-list__button')).to.have.text('Request Movie');
 
-    const requestText = shallow(<RequestButton requested />);
+    const requestText = shallow(<RequestButton mediaName="simpsons" source="tv" requested />);
     expect(requestText.find('.media-list__button')).to.have.text('Successfully Requested');
   });
 });

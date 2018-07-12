@@ -5,7 +5,7 @@ const shallow = enzyme.shallow;
 let wrapper;
 
 beforeEach(() => {
-  wrapper = shallow(<Header title="Plex Requests" />);
+  wrapper = shallow(<Header title="Plex Requests" apiKey="some-key" />);
 });
 
 describe('header.js', () => {

@@ -15,7 +15,7 @@ beforeEach(() => {
     name: 'garfield',
     source: 'movie',
   }];
-  wrapper = shallow(<MediaList media={media} />);
+  wrapper = shallow(<MediaList media={media} apiKey="some-key" />);
 });
 
 describe('media-list.js', () => {
@@ -29,7 +29,7 @@ describe('media-list.js', () => {
     expect(wrapper.find('MediaListItem')).to.be.present();
   });
   it('should not render the media list component if there are no items in the array', () => {
-    const component = shallow(<MediaList />);
+    const component = shallow(<MediaList apiKey="some-key" />);
     expect(component.find('MediaListItem')).to.not.be.present();
   });
 });
