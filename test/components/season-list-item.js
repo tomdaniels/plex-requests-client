@@ -4,13 +4,6 @@ const shallow = enzyme.shallow;
 
 let wrapper;
 
-// title: PropTypes.string.isRequired,
-// id: PropTypes.number.isRequired,
-// date: PropTypes.string.isRequired,
-// epCount: PropTypes.number.isRequired,
-// seasonNumber: PropTypes.string.isRequired,
-// seriesId: PropTypes.number.isRequired,
-
 beforeEach(() => {
   const season = {
     title: 'simpsons',
