@@ -15,7 +15,7 @@ there is also a **clear list** button incase anything buggy happens within the l
 
 ### Under the hood?
 
-- Webpack & Babel (homemade [boilerplate](https://github.com/tomdaniels/react-boilerplate))
+- Webpack & Babel (homemade [boilerplate](https://www.npmjs.com/package/generator-td-react-boilerplate))
 - Axios promise based http client
 - Simple express server, client side requests to movieDB API
 - Integrated homemade [API](https://github.com/tomdaniels/plex-requests-api)
