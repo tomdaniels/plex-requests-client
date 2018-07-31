@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Button = ({ mediaId, mediaName, source, isLoading, onClick, requested }) => {
 
-  const title = source === 'tv' ? 'Request Entire Series' : 'Request Movie';
+  const title = source === 'tv' ? 'Request entire series' : 'Request movie';
   const inStorage = localStorage.getItem(`${mediaId}`);
   const rightContext = inStorage == mediaName;
   const alreadyRequested = inStorage && rightContext;
@@ -19,7 +19,7 @@ const Button = ({ mediaId, mediaName, source, isLoading, onClick, requested }) =
           isLoading ? (
             <img className="media-list__loader" src="/images/loader.gif" />
           ) : (
-            alreadyRequested || requested ? 'Successfully Requested' : title
+            alreadyRequested || requested ? 'Successfully requested' : title
           )
         }
       </button>

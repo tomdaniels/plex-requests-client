@@ -22,12 +22,12 @@ describe('request-button.js', () => {
   });
   it('picks the right text for either TV Series or Movies', () => {
     const tvText = shallow(<RequestButton source="tv" mediaName="simpsons" />);
-    expect(tvText.find('.media-list__button')).to.have.text('Request Entire Series');
+    expect(tvText.find('.media-list__button')).to.have.text('Request entire series');
 
     const movieText = shallow(<RequestButton source="movie" mediaName="the simpsons movie" />);
-    expect(movieText.find('.media-list__button')).to.have.text('Request Movie');
+    expect(movieText.find('.media-list__button')).to.have.text('Request movie');
 
     const requestText = shallow(<RequestButton mediaName="simpsons" source="tv" requested />);
-    expect(requestText.find('.media-list__button')).to.have.text('Successfully Requested');
+    expect(requestText.find('.media-list__button')).to.have.text('Successfully requested');
   });
 });
