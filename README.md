@@ -2,7 +2,7 @@
 
 ![Plex Requests Site](/docs/screenshotGIF.gif "Plex Requests Site")
 
-### [requests.tomd.io](requests.tomd.io)
+### [requests.tomd.io](http://requests.tomd.io)
 
 This website is to help the users on my Plex server to request their own media.
 It fetches the necessary ID's from themovieDB api and uses my homemade [API](https://github.com/tomdaniels/plex-requests-api) to store them into a firebase DB.
