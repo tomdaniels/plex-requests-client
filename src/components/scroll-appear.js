@@ -18,7 +18,7 @@ class ScrollAppear extends React.Component {
     const { children, direction } = this.props;
     const { visible } = this.state;
 
-    const appearClass = classnames('plex-requests__scroll-appear', direction, {
+    const appearClass = classnames('plex-requests-client__scroll-appear', direction, {
       'is-visible': visible,
     });
 
