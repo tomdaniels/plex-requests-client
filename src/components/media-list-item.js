@@ -4,6 +4,7 @@ import axios from 'axios';
 import Modal from 'react-modal';
 import Seasons from './seasons-list';
 import Button from './request-button';
+import ScrollAppear from './scroll-appear';
 
 class MediaListItem extends React.Component {
   state = {
@@ -72,7 +73,7 @@ class MediaListItem extends React.Component {
 
   render() {
     return (
-      <div>
+      <ScrollAppear>
         <div className="media-list__title">
           <h5 className="media-list__media-name">{this.props.title}</h5>
           <h5 className="media-list__media-date">{this.props.date}</h5>
@@ -122,7 +123,7 @@ class MediaListItem extends React.Component {
               <Seasons title={this.props.title} seasons={this.state.seasons} />
             </Modal>
         }
-      </div>
+      </ScrollAppear>
     )
   }
 };
