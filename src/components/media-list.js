@@ -1,23 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import faker from 'faker';
+import remove from 'lodash/remove';
+import ScrollAppear from './scroll-appear';
 import MediaListItem from './media-list-item';
 
 const MediaList = ({ media, apiKey }) => {
-
-  media.sort(function(a, b) {
-    return b.popularity - a.popularity;
-  });
+  const fitleredMedia = (
+    media
+      .sort((a, b) => b.popularity - a.popularity)
+      .filter(item => remove(media, duplicate => duplicate.id === item.id))
+    );
 
   return (
     <div>
       <h4 className="media-list__section-header">
-        {media.length === 1 ? `1 result found` : `${media.length} results found`}
+        {fitleredMedia.length === 1 ? `1 result found` : `${fitleredMedia.length} results found`}
       </h4>
       <ul>
         {
-          media.length > 0 && media.map((mediaItem) => (
+          fitleredMedia.length > 0 && fitleredMedia.map((mediaItem) => (
             <li key={mediaItem.id} className="plex-requests__media-list">
-              <MediaListItem apiKey={apiKey} {...mediaItem} />
+              <ScrollAppear
+                direction={faker.random.arrayElement(["left","right"])}
+                children={ <MediaListItem apiKey={apiKey} {...mediaItem} /> }
+              >
+              </ScrollAppear>
             </li>
           ))
         }

@@ -73,63 +73,57 @@ class MediaListItem extends React.Component {
 
   render() {
     return (
-      <ScrollAppear
-        direction="left"
-        children={
-          <React.Fragment>
-            <div className="media-list__title">
-              <h5 className="media-list__media-name">{this.props.title}</h5>
-              <h5 className="media-list__media-date">{this.props.date}</h5>
-            </div>
-            <div className="media-list__description">
-              {
-                this.props.imageSlug !== 'null' &&
-                  <img className="media-list__poster"
-                  src={`http://image.tmdb.org/t/p/w185${this.props.imageSlug}`}
-                  alt={`${this.props.source === 'tv' ? 'Series' : 'Movie'} Poster, ${this.props.title}`}
-                  />
-              }
-              <p>
-                {
-                  this.props.desc || `Sorry, there is no description available for this ${this.props.source === 'tv' ? 'series' : 'movie'}.`
-                }
-              </p>
-            </div>
-            <div className="media-list__button-wrap">
-              <Button
-                mediaId={this.props.id}
-                mediaName={this.props.title}
-                isLoading={this.state.isLoading}
-                source={this.props.source}
-                onClick={this.onMediaRequest}
-                requested={this.state.requested}
+      <React.Fragment>
+        <div className="media-list__title">
+          <h5 className="media-list__media-name">{this.props.title}</h5>
+          <h5 className="media-list__media-date">{this.props.date}</h5>
+        </div>
+        <div className="media-list__description">
+          {
+            this.props.imageSlug !== 'null' &&
+              <img className="media-list__poster"
+              src={`http://image.tmdb.org/t/p/w185${this.props.imageSlug}`}
+              alt={`${this.props.source === 'tv' ? 'Series' : 'Movie'} Poster, ${this.props.title}`}
               />
+          }
+          <p>
             {
-              this.props.source === 'tv' &&
-                <button
-                      className="media-list__button"
-                      onClick={this.toggleModal}
-                    >
-                      +
-                </button>
+              this.props.desc || `Sorry, there is no description available for this ${this.props.source === 'tv' ? 'series' : 'movie'}.`
             }
-            </div>
-            {
-              this.state.expandTvShow &&
-                <Modal
-                  isOpen={this.state.expandTvShow}
-                  onAfterOpen={this.getSeasonData}
-                  onRequestClose={this.toggleModal}
-                  ariaHideApp={false}
-                  className="modal"
+          </p>
+        </div>
+        <div className="media-list__button-wrap">
+          <Button
+            mediaId={this.props.id}
+            mediaName={this.props.title}
+            isLoading={this.state.isLoading}
+            source={this.props.source}
+            onClick={this.onMediaRequest}
+            requested={this.state.requested}
+          />
+        {
+          this.props.source === 'tv' &&
+            <button
+                  className="media-list__button"
+                  onClick={this.toggleModal}
                 >
-                  <Seasons title={this.props.title} seasons={this.state.seasons} />
-                </Modal>
-            }
-          </React.Fragment>
+                  +
+            </button>
         }
-      >
-      </ScrollAppear>
+        </div>
+        {
+          this.state.expandTvShow &&
+            <Modal
+              isOpen={this.state.expandTvShow}
+              onAfterOpen={this.getSeasonData}
+              onRequestClose={this.toggleModal}
+              ariaHideApp={false}
+              className="modal"
+            >
+              <Seasons title={this.props.title} seasons={this.state.seasons} />
+            </Modal>
+        }
+      </React.Fragment>
     )
   }
 };

@@ -6,14 +6,17 @@ let wrapper;
 
 beforeEach(() => {
   const media = [{
-    name: 'simpsons',
-    source: 'tv'
+    id: 123,
+    title: 'the simpsons',
+    desc: 'the simpsons don\'t need a description',
+    date: 45678987654,
+    image: '/path/to/image',
   }, {
-    name: 'futurama',
-    source: 'tv'
-  }, {
-    name: 'garfield',
-    source: 'movie',
+    id: 123,
+    title: 'the simpsons',
+    desc: 'the simpsons don\'t need a description',
+    date: 45678987654,
+    image: '/path/to/image',
   }];
   wrapper = shallow(<MediaList media={media} apiKey="some-key" />);
 });
@@ -22,8 +25,9 @@ describe('media-list.js', () => {
   it('should render the component', () => {
     expect(wrapper.find('div')).to.have.length(1);
   });
-  it('should dynacially display number of results', () => {
-    expect(wrapper.find('.media-list__section-header')).to.have.text('3 results found');
+  it('should dynacially display number of results, removing duplicates', () => {
+    console.log(wrapper.find('.media-list__section-header'));
+    expect(wrapper.find('.media-list__section-header')).to.have.text('1 result found');
   });
   it('should render the media list if there are items in the media array', () => {
     expect(wrapper.find('MediaListItem')).to.be.present();
