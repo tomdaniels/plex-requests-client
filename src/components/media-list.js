@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import remove from 'lodash/remove';
+import ScrollAppear from './scroll-appear';
 import MediaListItem from './media-list-item';
 
 const MediaList = ({ media, apiKey }) => {
-
-  media.sort(function(a, b) {
-    return b.popularity - a.popularity;
-  });
+  media
+    .sort((a, b) => b.popularity - a.popularity)
+    .filter((item, index, self) => index == self.indexOf(item));
 
   return (
     <div>
@@ -17,7 +18,11 @@ const MediaList = ({ media, apiKey }) => {
         {
           media.length > 0 && media.map((mediaItem) => (
             <li key={mediaItem.id} className="plex-requests__media-list">
-              <MediaListItem apiKey={apiKey} {...mediaItem} />
+              <ScrollAppear
+                direction="left"
+                children={ <MediaListItem apiKey={apiKey} {...mediaItem} /> }
+              >
+              </ScrollAppear>
             </li>
           ))
         }
