@@ -1,4 +1,4 @@
-# plex-requests-client
+# plex-requests-client [![Build Status](https://travis-ci.com/tomdaniels/plex-requests-client.svg?branch=master)](https://travis-ci.com/tomdaniels/plex-requests-client)
 
 ![Plex Requests Site](/docs/screenshotGIF.gif "Plex Requests Site")
 
