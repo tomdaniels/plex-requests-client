@@ -6,6 +6,7 @@ import MediaList from './media-list';
 class SearchPage extends React.Component {
   state = {
     media: [],
+    searchInput: '',
     showList: false,
   };
 
@@ -55,6 +56,10 @@ class SearchPage extends React.Component {
     e.preventDefault();
     const input = e.target.value;
 
+    this.setState(() => ({
+      searchInput: input,
+    }));
+
     if (input.length >= 4) {
       this.setState(() => ({
         showList: true,
@@ -71,10 +76,12 @@ class SearchPage extends React.Component {
   clearList = () => {
     this.setState(() => ({
       media: [],
+      searchInput: '',
       showList: false,
     }));
-  };
 
+    this.searchInput.focus();
+  };
 
   toggleList(event) {
     event.preventDefault();
@@ -96,7 +103,9 @@ class SearchPage extends React.Component {
         >
           <input
             className="search-page__text-input"
+            ref={(input => { this.searchInput = input })}
             type="text"
+            value={this.state.searchInput}
             placeholder="by movie or show title.."
             onChange={this.handleChange}
           />
