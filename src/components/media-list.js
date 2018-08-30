@@ -9,7 +9,11 @@ const MediaList = ({ media, apiKey }) => {
   const fitleredMedia = (
     media
       .sort((a, b) => b.popularity - a.popularity)
-      .filter(item => remove(media, duplicate => duplicate.id === item.id))
+      .filter((item, index, self) => (
+        index === self.findIndex((t) => (
+          t.title === item.title && t.id === item.id
+        ))
+      ))
     );
 
   return (
