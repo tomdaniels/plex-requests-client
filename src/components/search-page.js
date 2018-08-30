@@ -112,7 +112,6 @@ class SearchPage extends React.Component {
         {
           this.state.showList &&
           <button
-            id="search-page__button"
             className="search-page__button"
             onClick={this.clearList.bind(this)}
           >
