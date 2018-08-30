@@ -39,5 +39,15 @@ describe('search-page.js', () => {
   it('should render the media list component when showList === true', () => {
     wrapper.setState(() => ({ showList: true }));
     expect(wrapper.find('MediaList')).to.be.present();
-  })
+  });
+  it('should clear the search input when clear list is clicked', () => {
+    wrapper.setState(() => ({
+      searchInput: 'some title search',
+      showList: true,
+    }));
+    wrapper.find('.search-page__button').simulate('click');
+
+    expect(wrapper.state().searchInput).to.equal('');
+    expect(wrapper.state().showList).to.equal(false);
+  });
 });
