@@ -81,7 +81,6 @@ class SearchPage extends React.Component {
     }));
   };
 
-
   toggleList(event) {
     event.preventDefault();
     this.setState(() => ({
