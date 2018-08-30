@@ -79,6 +79,8 @@ class SearchPage extends React.Component {
       searchInput: '',
       showList: false,
     }));
+
+    this.searchInput.focus();
   };
 
   toggleList(event) {
@@ -101,6 +103,7 @@ class SearchPage extends React.Component {
         >
           <input
             className="search-page__text-input"
+            ref={(input => { this.searchInput = input })}
             type="text"
             value={this.state.searchInput}
             placeholder="by movie or show title.."
@@ -109,6 +112,7 @@ class SearchPage extends React.Component {
         {
           this.state.showList &&
           <button
+            id="search-page__button"
             className="search-page__button"
             onClick={this.clearList.bind(this)}
           >
