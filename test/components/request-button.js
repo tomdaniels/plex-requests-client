@@ -30,4 +30,17 @@ describe('request-button.js', () => {
     const requestText = shallow(<RequestButton mediaName="simpsons" source="tv" requested />);
     expect(requestText.find('.media-list__button')).to.have.text('Successfully requested');
   });
+
+  it('should disable the button if medias already been requested, or user just clicked', () => {
+    const button = shallow(
+      <RequestButton
+        source="tv"
+        mediaName="simpsons"
+        isLoading
+        requested
+      />
+    );
+
+    expect(button.find('.media-list__button').prop('disabled')).to.equal(true);
+  });
 });

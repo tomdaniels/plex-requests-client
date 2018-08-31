@@ -12,7 +12,7 @@ const Button = ({ mediaId, mediaName, source, isLoading, onClick, requested }) =
     <div>
       <button
         className="media-list__button"
-        disabled={alreadyRequested || requested}
+        disabled={alreadyRequested || requested || isLoading}
         onClick={onClick}
       >
         {
