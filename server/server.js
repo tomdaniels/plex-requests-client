@@ -1,11 +1,13 @@
+const React = require('react')
 const path = require('path');
 const express = require('express');
 const app = express();
-const { whyDidYouUpdate } = require('why-did-you-update');
 const publicPath = path.join(__dirname, '..', 'public');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8686;
 
 if (process.env.NODE_ENV !== 'production') {
+  const { whyDidYouUpdate } = require('why-did-you-update');
+
   whyDidYouUpdate(React, {
     groupByComponent: true,
     collapseComponentGroups: false
