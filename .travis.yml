@@ -1,7 +1,10 @@
 language: node_js
 node_js:
+  - v10
+  - v8
   - "node"
 
 before_install:
   - npm i -g yarn
-  - npm i -g node@8.9.0
+  - nvm install 8.9.0
+  - nvm use 8.9.0
