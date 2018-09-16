@@ -8,12 +8,12 @@ import MediaListItem from './media-list-item';
 const MediaList = ({ media, apiKey }) => {
   const fitleredMedia = (
     media
-      .sort((a, b) => b.popularity - a.popularity)
       .filter((item, index, self) => (
         index === self.findIndex((t) => (
           t.title === item.title && t.id === item.id
         ))
       ))
+      .sort((a, b) => b.popularity - a.popularity)
     );
 
   return (
