@@ -8,7 +8,7 @@ class ScrollAppear extends React.Component {
     visible: false,
   };
 
-  handleIntersection = (inView) => {
+  handleIntersection = inView => {
     if (inView && !this.state.visible) {
       this.setState({ visible: true });
     }
@@ -18,9 +18,13 @@ class ScrollAppear extends React.Component {
     const { children, direction } = this.props;
     const { visible } = this.state;
 
-    const appearClass = classnames('plex-requests-client__scroll-appear', direction, {
-      'is-visible': visible,
-    });
+    const appearClass = classnames(
+      'plex-requests-client__scroll-appear',
+      direction,
+      {
+        'is-visible': visible,
+      },
+    );
 
     return (
       <Observer onChange={this.handleIntersection}>
