@@ -1,12 +1,29 @@
+/* eslint-disable  */
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Button = ({ mediaId, mediaName, source, isLoading, onClick, requested }) => {
-
+const Button = ({
+  mediaId,
+  mediaName,
+  source,
+  isLoading,
+  onClick,
+  requested,
+}) => {
   const title = source === 'tv' ? 'Request entire series' : 'Request movie';
   const inStorage = localStorage.getItem(`${mediaId}`);
-  const rightContext = inStorage == mediaName;
+  // eslint-disable-next-line eqeqeq
+  const rightContext = inStorage == mediaName; // coercion required
   const alreadyRequested = inStorage && rightContext;
+
+  const buttonText = () => {
+    if (isLoading) {
+      return <img className="media-list__loader" src="/images/loader.gif" alt="loading spinner" />;
+    } else if (alreadyRequested || requested) {
+      return 'Successfully requested'
+    }
+    return title;
+  }
 
   return (
     <div>
@@ -15,20 +32,15 @@ const Button = ({ mediaId, mediaName, source, isLoading, onClick, requested }) =
         disabled={alreadyRequested || requested || isLoading}
         onClick={onClick}
       >
-        {
-          isLoading ? (
-            <img className="media-list__loader" src="/images/loader.gif" />
-          ) : (
-            alreadyRequested || requested ? 'Successfully requested' : title
-          )
-        }
+        {buttonText()}
       </button>
     </div>
-  )
-}
+  );
+};
 
 Button.propTypes = {
   mediaName: PropTypes.string.isRequired,
+  mediaId: PropTypes.number.isRequired,
   source: PropTypes.string.isRequired,
   isLoading: PropTypes.bool,
   onClick: PropTypes.func,
