@@ -150,10 +150,10 @@ class MediaListItem extends React.Component {
 
 MediaListItem.propTypes = {
   apiKey: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
-  date: PropTypes.number.isRequired,
+  date: PropTypes.string.isRequired,
   imageSlug: PropTypes.string.isRequired,
   source: PropTypes.string.isRequired,
 };
