@@ -4,7 +4,6 @@ import axios from 'axios';
 import Modal from 'react-modal';
 import Seasons from './seasons-list';
 import Button from './request-button';
-import ScrollAppear from './scroll-appear';
 
 class MediaListItem extends React.Component {
   state = {
@@ -14,61 +13,84 @@ class MediaListItem extends React.Component {
     requested: false,
   };
 
-  toggleModal = () => {
-    this.setState((prevState) => ({
-      expandTvShow: !prevState.expandTvShow,
-    }));
-  };
-
-  onMediaRequest = (source) => {
-    const endpointTitle = this.props.title.toLowerCase().split(' ').join('-').replace('\'', '').replace('.', '').replace(':', '');
-    const endpoint = this.props.source === 'movie' ? (
-      `http://requests-api.tomd.io/v1/movie/${endpointTitle}`
-    ) : (
-      `http://requests-api.tomd.io/v1/tv/${endpointTitle}`
-    );
+  onMediaRequest = () => {
+    // remove any special characters that may be in the movie title
+    const endpointTitle = this.props.title
+      .toLowerCase()
+      .split(' ')
+      .join('-')
+      .replace("'", '')
+      .replace('.', '')
+      .replace(':', '');
+    // pick which endpoint to call
+    const endpoint =
+      this.props.source === 'movie'
+        ? `http://requests-api.tomd.io/v1/movie/${endpointTitle}`
+        : `http://requests-api.tomd.io/v1/tv/${endpointTitle}`;
 
     this.setState(() => ({
       isLoading: true,
     }));
 
-    axios.post(endpoint).then((response) => {
-      if (response.status === 200) {
+    axios
+      .post(endpoint)
+      .then(response => {
+        if (response.status === 200) {
+          this.setState(() => ({
+            isLoading: false,
+          }));
+        }
+      })
+      .then(() => {
+        this.setState(() => ({
+          requested: true,
+        }));
+        localStorage.setItem(`${this.props.id}`, `${this.props.title}`);
+      })
+      .catch(error => {
         this.setState(() => ({
           isLoading: false,
         }));
-      }
-    }).then(() => {
-      this.setState(() => ({
-        requested: true,
-      }));
-      localStorage.setItem(`${this.props.id}`, `${this.props.title}`);
-    }).catch((error) => {
-      this.setState(() => ({
-        isLoading: false,
-      }));
-      alert(`Oops... Call the tech guys! Something went wrong requesting ${this.props.title}`);
-    });
-  }
+        // eslint-disable-next-line no-alert
+        alert(
+          `Oops... Call the tech guys! Something went wrong requesting ${
+            this.props.title
+          }:`,
+          error,
+        );
+      });
+  };
 
   getSeasonData = () => {
-    const endpoint = `https://api.themoviedb.org/3/tv/${this.props.id}?api_key=${this.props.apiKey}`;
+    const endpoint = `https://api.themoviedb.org/3/tv/${
+      this.props.id
+    }?api_key=${this.props.apiKey}`;
 
-    axios.get(endpoint).then((response) => {
-      if (response.status === 200) {
-        const results = response.data.seasons;
-        const seasons = results.map((result) => ({
-          id: result.id,
-          date: result.air_date,
-          epCount: result.episode_count,
-          seasonNumber: result.name,
-          seriesId: this.props.id,
-        }));
-        this.setState(() => ({
-          seasons,
-        }));
-      }
-    }).catch((err) => console.log(err));
+    axios
+      .get(endpoint)
+      .then(response => {
+        if (response.status === 200) {
+          const results = response.data.seasons;
+          const seasons = results.map(result => ({
+            id: result.id,
+            date: result.air_date,
+            epCount: result.episode_count,
+            seasonNumber: result.name,
+            seriesId: this.props.id,
+          }));
+          this.setState(() => ({
+            seasons,
+          }));
+        }
+      })
+      // eslint-disable-next-line no-console
+      .catch(err => console.log(err));
+  };
+
+  toggleModal = () => {
+    this.setState(prevState => ({
+      expandTvShow: !prevState.expandTvShow,
+    }));
   };
 
   render() {
@@ -79,17 +101,20 @@ class MediaListItem extends React.Component {
           <h5 className="media-list__media-date">{this.props.date}</h5>
         </div>
         <div className="media-list__description">
-          {
-            this.props.imageSlug !== 'null' &&
-              <img className="media-list__poster"
+          {this.props.imageSlug !== 'null' && (
+            <img
+              className="media-list__poster"
               src={`http://image.tmdb.org/t/p/w185${this.props.imageSlug}`}
-              alt={`${this.props.source === 'tv' ? 'Series' : 'Movie'} Poster, ${this.props.title}`}
-              />
-          }
+              alt={`${
+                this.props.source === 'tv' ? 'Series' : 'Movie'
+              } Poster, ${this.props.title}`}
+            />
+          )}
           <p>
-            {
-              this.props.desc || `Sorry, there is no description available for this ${this.props.source === 'tv' ? 'series' : 'movie'}.`
-            }
+            {this.props.desc ||
+              `Sorry, there is no description available for this ${
+                this.props.source === 'tv' ? 'series' : 'movie'
+              }.`}
           </p>
         </div>
         <div className="media-list__button-wrap">
@@ -101,44 +126,36 @@ class MediaListItem extends React.Component {
             onClick={this.onMediaRequest}
             requested={this.state.requested}
           />
-        {
-          this.props.source === 'tv' &&
-            <button
-                  className="media-list__button"
-                  onClick={this.toggleModal}
-                >
-                  +
+          {this.props.source === 'tv' && (
+            <button className="media-list__button" onClick={this.toggleModal}>
+              +
             </button>
-        }
+          )}
         </div>
-        {
-          this.state.expandTvShow &&
-            <Modal
-              isOpen={this.state.expandTvShow}
-              onAfterOpen={this.getSeasonData}
-              onRequestClose={this.toggleModal}
-              ariaHideApp={false}
-              className="modal"
-            >
-              <Seasons title={this.props.title} seasons={this.state.seasons} />
-            </Modal>
-        }
+        {this.state.expandTvShow && (
+          <Modal
+            isOpen={this.state.expandTvShow}
+            onAfterOpen={this.getSeasonData}
+            onRequestClose={this.toggleModal}
+            ariaHideApp={false}
+            className="modal"
+          >
+            <Seasons title={this.props.title} seasons={this.state.seasons} />
+          </Modal>
+        )}
       </React.Fragment>
-    )
+    );
   }
-};
-
-
+}
 
 MediaListItem.propTypes = {
   apiKey: PropTypes.string.isRequired,
-  media: PropTypes.shape({
-    id: PropTypes.string,
-    title: PropTypes.string,
-    desc: PropTypes.string,
-    date: PropTypes.number,
-    image: PropTypes.string,
-  }),
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  desc: PropTypes.string.isRequired,
+  date: PropTypes.number.isRequired,
+  imageSlug: PropTypes.string.isRequired,
+  source: PropTypes.string.isRequired,
 };
 
 export default MediaListItem;
