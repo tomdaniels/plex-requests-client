@@ -17,9 +17,11 @@ const MediaList = ({ media, apiKey }) => {
   return (
     <div>
       <h4 className="media-list__section-header">
-        {fitleredMedia.length === 1
-          ? `1 result found`
-          : `${fitleredMedia.length} results found`}
+        {
+          fitleredMedia.length === 0
+          ? '...fetching'
+          : `${fitleredMedia.length} results found`
+        }
       </h4>
       <ul>
         {fitleredMedia.length > 0 &&
