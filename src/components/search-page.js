@@ -13,7 +13,7 @@ class SearchPage extends React.Component {
     };
     this.clearList = this.clearList.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
-  };
+  }
 
   onFormSubmit(event) {
     event.preventDefault();
@@ -22,7 +22,7 @@ class SearchPage extends React.Component {
       showList: true,
     }));
     this.getMedia(input);
-  };
+  }
 
   getMedia(input) {
     const encodedInput = input.includes(' ') ? input.replace(' ', '+') : input;
