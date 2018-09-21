@@ -11,8 +11,17 @@ class SearchPage extends React.Component {
       searchInput: '',
       showList: false,
     };
-    this.toggleList = this.toggleList.bind(this);
     this.clearList = this.clearList.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
+  }
+
+  onFormSubmit(event) {
+    event.preventDefault();
+    const input = this.state.searchInput;
+    this.setState(() => ({
+      showList: true,
+    }));
+    this.getMedia(input);
   }
 
   getMedia(input) {
@@ -73,20 +82,9 @@ class SearchPage extends React.Component {
     const input = event.target.value;
 
     this.setState(() => ({
+      showList: false,
       searchInput: input,
     }));
-
-    if (input.length >= 4) {
-      this.setState(() => ({
-        showList: true,
-      }));
-    } else {
-      this.setState(() => ({
-        showList: false,
-      }));
-    }
-
-    this.getMedia(input);
   };
 
   clearList = () => {
@@ -99,13 +97,6 @@ class SearchPage extends React.Component {
     this.searchInput.focus();
   };
 
-  toggleList(event) {
-    event.preventDefault();
-    this.setState(() => ({
-      showList: !this.state.showList,
-    }));
-  }
-
   render() {
     return (
       <div className="search-page__wrapper">
@@ -113,7 +104,10 @@ class SearchPage extends React.Component {
         <h3 className="search-page__sub-header">
           {"Wanna see something that's not on my Plex? Sort that out below..."}
         </h3>
-        <form className="search-page__form-wrapper" onSubmit={this.toggleList}>
+        <form
+          className="search-page__form-wrapper"
+          onSubmit={this.onFormSubmit}
+        >
           <input
             className="search-page__text-input"
             ref={input => {

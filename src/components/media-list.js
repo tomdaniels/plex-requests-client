@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import faker from 'faker';
 import ScrollAppear from './scroll-appear';
 import MediaListItem from './media-list-item';
-
-const direction = faker.random.arrayElement(['left', 'right']);
 
 const MediaList = ({ media, apiKey }) => {
   const fitleredMedia = media
@@ -20,15 +17,15 @@ const MediaList = ({ media, apiKey }) => {
   return (
     <div>
       <h4 className="media-list__section-header">
-        {fitleredMedia.length === 1
-          ? `1 result found`
+        {fitleredMedia.length === 0
+          ? '...fetching'
           : `${fitleredMedia.length} results found`}
       </h4>
       <ul>
         {fitleredMedia.length > 0 &&
           fitleredMedia.map(mediaItem => (
             <li key={mediaItem.id} className="plex-requests__media-list">
-              <ScrollAppear direction={direction}>
+              <ScrollAppear>
                 <MediaListItem apiKey={apiKey} {...mediaItem} />
               </ScrollAppear>
             </li>

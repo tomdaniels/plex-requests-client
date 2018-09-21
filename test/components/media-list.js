@@ -27,7 +27,7 @@ describe('media-list.js', () => {
   });
   it('should dynacially display number of results, removing duplicates', () => {
     console.log(wrapper.find('.media-list__section-header'));
-    expect(wrapper.find('.media-list__section-header')).to.have.text('1 result found');
+    expect(wrapper.find('.media-list__section-header')).to.have.text('1 results found');
   });
   it('should render the media list if there are items in the media array', () => {
     expect(wrapper.find('MediaListItem')).to.be.present();

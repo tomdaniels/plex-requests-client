@@ -40,15 +40,4 @@ describe('search-page.js', () => {
     wrapper.setState(() => ({ showList: true }));
     expect(wrapper.find('MediaList')).to.be.present();
   });
-  it('should clear the search input when clear list is clicked', () => {
-    const component = mount(<SearchPage apiKey="9c5d6b4947c4158889089d104d6ad8b8" />);
-    component.setState(() => ({
-      searchInput: 'some title search',
-      showList: true,
-    }));
-    component.find('.search-page__button').simulate('click');
-
-    expect(component.state().searchInput).to.equal('');
-    expect(component.state().showList).to.equal(false);
-  });
 });
