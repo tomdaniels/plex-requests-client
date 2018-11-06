@@ -33,10 +33,10 @@
 
 .search-page__button {
   border: 1px solid $plex-orange;
+  border-radius: 5px;
+  padding: 10px;
   color: $plex-orange;
   background-color: transparent;
-  height: 50px;
-  width: 100px;
   font-size: $size-med-plus;
   font-weight: 300;
   display: none;
